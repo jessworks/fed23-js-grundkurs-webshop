@@ -1,2 +1,5 @@
-/*# sourceMappingURL=style.css.map */
-
+@charset "UTF-8";
+/*@import 'vendor/normalize';   vad är fel?*/
+h1 {
+  color: blue;
+}/*# sourceMappingURL=style.css.map */

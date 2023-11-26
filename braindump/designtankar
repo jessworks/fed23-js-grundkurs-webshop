@@ -1,0 +1,6 @@
+Filter:
+- <options> för pris/kategori/rating
+- baserat på val så triggar eventet sorteringen av det som valts
+    - pris/namn/rating sort och omvänd sort
+    - kategorier klick på knapp aktiverar för specifik option, hur koppla? finns det enklare sätt?
+- inte flera filter på en gång, eller?

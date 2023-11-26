@@ -1,0 +1,131 @@
+content
+specs
+css
+_________________
+    CONTENT
+_________________
+
+HEAD
+links
+description
+seo
+
+HEADER
+h1
+btn cart
+btns sort
+
+PRODUCTS
+img 
+name
+category
+rating
+price
++/- & counter
+sum of products added
+btn remove added products
+
+ORDER SUMMARY
+btn back to top
+added products
+clear cart
+order total
+input discount code
+discounts, premium pricing
+delivery fees
+
+ORDER FORM
+customer info
+payment options
+btn yes newsletter
+btn yes gdpr
+
+
+THANK YOU POPUP
+thank you and confirmation of order
+
+_______________________
+        SPECS
+_______________________
+
+HEAD
+two-sentence description
+og, same as tough cookie
+
+HEADER
+btn cart
+    -btn with icon inside
+    -aria
+    -anchor link jumps to order summary
+btns sort
+    -btns with icons inside
+    -aria
+    -options for categories
+
+PRODUCTS
+loop  through array
+    -img
+        -hardcoded
+        -w & h, alt, lazy
+    -rating
+        -stars or ugly-do it with numbers only?
+    -+/- & counter
+        -spiceRack videos
+        -btns +/-
+        -counter input
+        -visual que when items are added
+            -setTimeout/cart btn colour change
+    -sum of products added
+        -print
+    -btn remove
+        -btn
+        -icon inside btn
+
+ORDER SUMMARY
+btn top of page
+    -btn with icon inside
+    -aria
+    -anchor link jumps to products
+message stating cart is empty if nothing is added
+click evt, +/-/remove btn
+    -prints, modifies, removes products
+    -name, product price, total price of product(s) added, remove btn
+btn clear cart
+    -spiceRack
+timer
+    -empties cart efter 15 mins
+    -'too slow' message
+input discount code
+    -non-functioning
+discounts, premium pricing
+    -think on arithmetics
+delivery fees
+    -think on arithmetics
+
+ORDER FORM
+customer info
+    -clear indicator for wrong/empty input, a11y
+    -write in html
+    -validate in js
+    -firstName, lastName, streetAddress, postalCode, town, doorCode (not validated), phone, email
+payment options
+    -options for cash or invoice
+        -card details (not validated)
+        -NI-number (RegEx), ordermängd
+btn newsletter
+    -default ticked
+btn gdpr
+    -
+btn order
+    -validation complete in order to function, otherwise disabled and greyed out
+    -activates thank you popup
+    -empties order form?
+
+THANK YOU POPUP
+standardised message
+    - tab through?
+
+__________________
+        CSS
+__________________
+
