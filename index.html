@@ -9,13 +9,51 @@
 </head>
 <body>
     <header>
-        <h1>shop</h1>
-        <button></button> <!--cart/orderformulär ankarlänk-->
+        <h1>Dale & the Donuts</h1>
+        <button><a href="#orderFormPage">cart icon</a></button> 
     </header>
-    <!--filter?-->
-    <li></li> <!--produkt & co-->
-    <!--orderfomulär-->
-    <!--orderbekräftelse? popup?-->
+    
+    <main>
+        <div id="productsPage">
+            <div id="productsFilter">
+                <button id="productsFilterAZ">a-z icon</button>
+                <button id="productsFilterZA">z-a icon</button>
+                <button id="productsFilterPriceAsc">123 icon</button>
+                <button id="productsFilterPriceDesc">321 icon</button>
+                <button id="productCategory">funnel icon</button> <!--Funnel btn öppnar option och label är hidden. Får man göra så?-->
+                <label id="productCategoryLabel"></label>
+                <select id="productsFilterCategory">
+                    <option value="logLady">Log Lady</option>
+                    <option value="specialAgent">Special Agent</option>
+                    <option value="stateTrooper">State Trooper</option>
+                </select>
+            </div>
+            <ul id="products"></ul>
+        </div>
+        
+        <div id="orderFormPage">
+            <div id="cart"></div>
+                <button><a href="productsPage">back to top</a></button>
+                <div id="customerInfo">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName">
+                    <label for="streetAddress">Street Address</label>
+                    <input type="text" id="streetAddress">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="number" id="postalCode">
+                    <label for="Town">Town</label>
+                    <input type="text" id="town">
+                    <label for="dooorCode">Door Code</label>
+                    <input type="number" id="doorCode">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email">
+                </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>

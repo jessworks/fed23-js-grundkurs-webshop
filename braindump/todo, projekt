@@ -13,9 +13,9 @@ seo
 HEADER
 h1
 btn cart
-btns sort
 
 PRODUCTS
+btn sort
 img 
 name
 category
@@ -53,16 +53,20 @@ two-sentence description
 og, same as tough cookie
 
 HEADER
+shop name
+    x-h1
 btn cart
-    -btn with icon inside
+    x-btn
+    -icon inside
     -aria
-    -anchor link jumps to order summary
-btns sort
-    -btns with icons inside
-    -aria
-    -options for categories
+    x-anchor link jumps to order summary
 
 PRODUCTS
+btns sort
+    x-btns
+    -icons inside
+    -aria
+    x-options for categories
 loop  through array
     -img
         -hardcoded
@@ -83,10 +87,13 @@ loop  through array
 
 ORDER SUMMARY
 btn top of page
-    -btn with icon inside
+    x-btn
+    -icon inside
     -aria
-    -anchor link jumps to products
+    x-anchor link jumps to products
 message stating cart is empty if nothing is added
+    -if, else... productCount > 0 {hela printa-loopen-grejen} / {print empty cart message} vart hör den hemma? existeraar den i sig själv bara? 
+
 click evt, +/-/remove btn
     -prints, modifies, removes products
     -name, product price, total price of product(s) added, remove btn
@@ -105,9 +112,9 @@ delivery fees
 ORDER FORM
 customer info
     -clear indicator for wrong/empty input, a11y
-    -write in html
+    x-write in html
     -validate in js
-    -firstName, lastName, streetAddress, postalCode, town, doorCode (not validated), phone, email
+    x-firstName, lastName, streetAddress, postalCode, town, doorCode (optional, not validated), phone, email
 payment options
     -options for cash or invoice
         -card details (not validated)
@@ -129,3 +136,11 @@ __________________
         CSS
 __________________
 
+simple
+raspberry red and custard yellow, ivory/pale sadbeige background for softness
+serif, open font leaning into retro harlem diner
+
+structure prodcts as in tough cookie menu
+similar in order summary
+order form?
+cute popup
