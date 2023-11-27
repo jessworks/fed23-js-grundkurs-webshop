@@ -197,13 +197,13 @@ function printProductsCart() {
                     <span>${products.name}</span>
                     <div>Amount: <span>${products.amount}</span></div>
                     <div>Total: <span>${products.amount * products.price}</span> kr</div>
-                    <div>Sum total: <span>${sum}</span> kr</div>
+                    
                 </article>
             `;
         };
     });
+    cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
 };
 
 printProducts();
 
-//cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
