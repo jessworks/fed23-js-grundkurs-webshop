@@ -1,4 +1,5 @@
 const productsContainerHtml = document.querySelector('#productsContainer');
+const cartContainerHtml = document.querySelector('#cartContainer');
 
 const products = [
     {
@@ -178,6 +179,31 @@ function printProducts() {
     btnIncrease.forEach(btn => {
         btn.addEventListener('click', increaseAmount);
     });
+
+    printProductsCart();
+};
+
+function printProductsCart() {
+    cartContainerHtml.innerHTML = '';
+
+    let sum = 0;
+
+    products.forEach(products => {
+        if (products.amount > 0) {
+            sum += products.amount * products.price;
+            cartContainerHtml.innerHTML += 
+            `
+                <article>
+                    <span>${products.name}</span>
+                    <div>Amount: <span>${products.amount}</span></div>
+                    <div>Total: <span>${products.amount * products.price}</span> kr</div>
+                    <div>Sum total: <span>${sum}</span> kr</div>
+                </article>
+            `;
+        };
+    });
 };
 
 printProducts();
+
+//cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
