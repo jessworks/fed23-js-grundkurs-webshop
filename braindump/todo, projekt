@@ -49,24 +49,24 @@ _______________________
 _______________________
 
 HEAD
-two-sentence description
+x two-sentence description
 og, same as tough cookie
 
 HEADER
 shop name
-    x-h1
+    x h1
 btn cart
-    x-btn
+    x btn
     -icon inside
     -aria
-    x-anchor link jumps to order summary
+    x anchor link jumps to order summary
 
 PRODUCTS
 btns sort
-    x-btns
+    x btns
     -icons inside
     -aria
-    x-options for categories
+    x options for categories
 loop  through array
     -img
         -hardcoded
@@ -87,10 +87,10 @@ loop  through array
 
 ORDER SUMMARY
 btn top of page
-    x-btn
+    x btn
     -icon inside
     -aria
-    x-anchor link jumps to products
+    x anchor link jumps to products
 message stating cart is empty if nothing is added
     -if, else... productCount > 0 {hela printa-loopen-grejen} / {print empty cart message} vart hör den hemma? existeraar den i sig själv bara? 
 
@@ -112,9 +112,9 @@ delivery fees
 ORDER FORM
 customer info
     -clear indicator for wrong/empty input, a11y
-    x-write in html
+    x write in html
     -validate in js
-    x-firstName, lastName, streetAddress, postalCode, town, doorCode (optional, not validated), phone, email
+    x firstName, lastName, streetAddress, postalCode, town, doorCode (optional, not validated), phone, email
 payment options
     -options for cash or invoice
         -card details (not validated)

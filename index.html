@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dale & the Donuts is the last stop for travelers sth...">
     <title>Dale & the Donuts</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -10,11 +11,11 @@
 <body>
     <header>
         <h1>Dale & the Donuts</h1>
-        <button><a href="#orderFormPage">cart icon</a></button> 
+        <button><a href="#pageTwo">cart icon</a></button> 
     </header>
-    
+
     <main>
-        <div id="productsPage">
+        <div id="pageOne">
             <div id="productsFilter">
                 <button id="productsFilterAZ">a-z icon</button>
                 <button id="productsFilterZA">z-a icon</button>
@@ -28,12 +29,12 @@
                     <option value="stateTrooper">State Trooper</option>
                 </select>
             </div>
-            <ul id="products"></ul>
+            <ul id="productsContainer"></ul>
         </div>
         
-        <div id="orderFormPage">
+        <div id="pageTwo">
             <div id="cart"></div>
-                <button><a href="productsPage">back to top</a></button>
+                <button><a href="#pageOne">back to top</a></button>
                 <div id="customerInfo">
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName">
