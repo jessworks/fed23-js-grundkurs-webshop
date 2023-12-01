@@ -1,5 +1,1 @@
-@charset "UTF-8";
-/*@import 'vendor/normalize';   vad är fel?*/
-h1 {
-  color: blue;
-}/*# sourceMappingURL=style.css.map */
+header{position:fixed;top:0;width:100vw;color:#55253f;background-color:#f96161}main{margin-top:100px;background-color:#e1e9b7}

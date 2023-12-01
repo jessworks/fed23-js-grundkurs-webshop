@@ -1,11 +1,18 @@
 const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
+const today = new Date();
+
+const isFriday = today.getDay() === 5;
+const isSaturday = today.getDay() === 6;
+const isSunday = today.getDay() === 0;
+const isMonday = today.getDay() === 1;
+const currentHour = today.getHours();
 
 const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -18,7 +25,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -31,7 +38,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -44,7 +51,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -57,7 +64,7 @@ const products = [
     {
         image: [
         {
-            src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+            src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
             alt: 'placeholder',
         },
     ],
@@ -70,7 +77,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -83,7 +90,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -96,7 +103,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -109,7 +116,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -122,7 +129,7 @@ const products = [
     {
         image: [
             {
-                src: 'images/images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
+                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
                 alt: 'placeholder',
             },
         ],
@@ -150,8 +157,21 @@ function increaseAmount(e) {
     printProducts();
 };
 
+function getPriceMultiplier() {
+    if ((isFriday && currentHour >= 15) || isSaturday || isSunday || (isMonday && currentHour > 3)) {
+        return 1.15;
+    } else {
+        return 1;
+    };
+}
+
+//Print products
 function printProducts() {
     productsContainerHtml.innerHTML = '';
+
+    let priceIncrease = getPriceMultiplier();
+
+    
 
     products.forEach((products, index) => {
         productsContainerHtml.innerHTML += 
@@ -159,7 +179,7 @@ function printProducts() {
             <li>
                 <img>${products.image}
                 <h2>${products.name}</h2>
-                <div>Price: <span>${products.price}</span> kr</div>
+                <div>Price: <span>${products.price * priceIncrease}</span> kr</div>
                 <div>Rating: <span>${products.rating}</span></div>
                 <div>Category: <span>${products.category}</span></div>
                 <button class="decrease" data-id="${index}">-</button>
@@ -183,27 +203,44 @@ function printProducts() {
     printProductsCart();
 };
 
+//Print cart
 function printProductsCart() {
     cartContainerHtml.innerHTML = '';
 
     let sum = 0;
+    let msg = '';
+    let priceIncrease = getPriceMultiplier();
 
+    //Cart
     products.forEach(products => {
         if (products.amount > 0) {
-            sum += products.amount * products.price;
+            const adjustedProductsPrice = products.price * priceIncrease;
+            sum += products.amount * adjustedProductsPrice;
             cartContainerHtml.innerHTML += 
             `
                 <article>
                     <span>${products.name}</span>
                     <div>Amount: <span>${products.amount}</span></div>
-                    <div>Total: <span>${products.amount * products.price}</span> kr</div>
+                    <div>Total: <span>${products.amount * adjustedProductsPrice}</span> kr</div>
                     
                 </article>
             `;
         };
     });
+
+    if (sum <= 0) {
+        return;
+    }
+
+    if (isMonday && currentHour > 3) {
+        sum *= 0.9;
+        msg += `<p>Happy Monday! 10 % off your order.</p>`;
+    };
+
     cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
+    cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 };
 
 printProducts();
 
+ 
