@@ -208,11 +208,14 @@ function printProductsCart() {
     cartContainerHtml.innerHTML = '';
 
     let sum = 0;
+    let productsAmountOrdered = 0;
     let msg = '';
     let priceIncrease = getPriceMultiplier();
 
     //Cart
     products.forEach(products => {
+        productsAmountOrdered += products.amount;
+
         if (products.amount > 0) {
             let productsPrice = products.price; //vad fattas? jfr tidigare specialregler
             if (products.amount >= 10) {
@@ -241,11 +244,17 @@ function printProductsCart() {
 
     if (isMonday && currentHour > 3) {
         sum *= 0.9;
-        msg += `<p>Happy Monday! 10 % off your order.</p>`;
+        msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
     cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
+
+    if (productsAmountOrdered > 15) {
+        cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
+    } else {
+        cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
+    };
 };
 
 printProducts();
