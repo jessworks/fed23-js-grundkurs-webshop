@@ -8,6 +8,9 @@ const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 
+//koppla timeout till function som återställer hela sidan
+let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
+
 const products = [
     {
         image: [
@@ -141,6 +144,10 @@ const products = [
     }
 ];
 
+function resetOrderForm() {
+    alert('Too slow, someone else is eating your donuts.')
+};
+
 function decreaseAmount(e) {
     const index = e.currentTarget.dataset.id;
     if (products[index].amount >= 0) {
@@ -170,8 +177,6 @@ function printProducts() {
     productsContainerHtml.innerHTML = '';
 
     let priceIncrease = getPriceMultiplier();
-
-    
 
     products.forEach((products, index) => {
         productsContainerHtml.innerHTML += 
@@ -216,6 +221,7 @@ function printProductsCart() {
     products.forEach(products => {
         productsAmountOrdered += products.amount;
 
+        //10 or more of same product, 10 % discount
         if (products.amount > 0) {
             let productsPrice = products.price; //vad fattas? jfr tidigare specialregler
             if (products.amount >= 10) {
@@ -242,6 +248,7 @@ function printProductsCart() {
         return;
     }
 
+    //Monday discount
     if (isMonday && currentHour > 3) {
         sum *= 0.9;
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
@@ -250,6 +257,7 @@ function printProductsCart() {
     cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
+    //15+ products, free delivery
     if (productsAmountOrdered > 15) {
         cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
     } else {
