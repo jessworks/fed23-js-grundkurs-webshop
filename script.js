@@ -214,8 +214,15 @@ function printProductsCart() {
     //Cart
     products.forEach(products => {
         if (products.amount > 0) {
-            const adjustedProductsPrice = products.price * priceIncrease;
+            let productsPrice = products.price; //vad fattas? jfr tidigare specialregler
+            if (products.amount >= 10) {
+                products.price *= 0.9;
+            };
+
+            const adjustedProductsPrice = productsPrice * priceIncrease;
+
             sum += products.amount * adjustedProductsPrice;
+
             cartContainerHtml.innerHTML += 
             `
                 <article>
