@@ -238,10 +238,10 @@ function printProductsCart() {
                 <article>
                     <span>${products.name}</span>
                     <div>Amount: <span>${products.amount}</span></div>
-                    <div>Total: <span>${products.amount * adjustedProductsPrice}</span> kr</div>
+                    <div>Total: <span>${Math.round(products.amount * adjustedProductsPrice)}</span> kr</div>
                     
                 </article>
-            `; //Math.round för Total?
+            `;
         };
     });
 
@@ -251,11 +251,11 @@ function printProductsCart() {
 
     //Monday discount
     if (isMonday && currentHour > 3) {
-        sum *= 0.9; //Math.round?
+        sum *= 0.9; 
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
-    cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`; //Math.round för Total sum??
+    cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
     //15+ products, free delivery
