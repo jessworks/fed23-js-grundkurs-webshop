@@ -57,7 +57,7 @@ const products = [
                 alt: 'placeholder',
             },
         ],
-        name: 'Cofee, Black',
+        name: 'Coffee, Black',
         price: 42,
         rating: 4,
         category: 'special agent',
@@ -173,6 +173,20 @@ function getPriceMultiplier() {
     };
 }
 
+/*Sort. En för varje sort funktion och kopplas till click evt. Vill göra den generella men vet fattar inte hur '?' delen tolkas.
+Den funkar där den står nu, men vart bor eventlistener och hur får jag listan att printas igen? 
+"click på filterknapp -> sotera på det sättet -> printa den i den sorterade ordningen"*/
+const sortNameAbc = products.sort((a, b) => {
+    if (a.price < b.price) {
+        return -1;
+    }
+    if (a.price > b.price) {
+        return 1;
+    }
+    return 0;
+});
+console.table(products);
+
 //Print products
 function printProducts() {
     productsContainerHtml.innerHTML = '';
@@ -192,7 +206,7 @@ function printProducts() {
                 <button class="increase" data-id="${index}">+</button>
                 <div>Amount: <span>${products.amount}</span></div>
             </li>
-        `; //Math.round för Price?
+        `;
     });
 
     const btnDecrease = document.querySelectorAll('button.decrease');

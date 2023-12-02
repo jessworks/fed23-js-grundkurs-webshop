@@ -12,6 +12,9 @@ header {
         text-transform: uppercase;
         color: #1E3947;
     }
+    .btnToCart {
+        background-color: #CED2BA;
+    }
 };
 
 /*
@@ -39,6 +42,9 @@ ___________________________
 */
 
 #pageTwo {
+    .btnToTop {
+        background-color: #CED2BA;
+    }
     #customerInfo {
         display: grid;
         justify-content: center;
