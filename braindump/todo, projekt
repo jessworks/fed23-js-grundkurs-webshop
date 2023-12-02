@@ -74,9 +74,7 @@ loop  through array
     -rating
         -stars or ugly-do it with numbers only?
     -+/- & counter
-        -spiceRack videos
-        -btns +/-
-        -counter input
+       
         -visual que when items are added
             -setTimeout/cart btn colour change
     -sum of products added
@@ -101,13 +99,13 @@ btn clear cart
     -spiceRack
 timer
     -empties cart efter 15 mins
-    -'too slow' message
+    x 'too slow' message
 input discount code
     -non-functioning
 discounts, premium pricing
-    -think on arithmetics
+    x think on arithmetics
 delivery fees
-    -think on arithmetics
+    x think on arithmetics
 
 ORDER FORM
 customer info
@@ -140,7 +138,7 @@ simple
 raspberry red and custard yellow, ivory/pale sadbeige background for softness
 serif, open font leaning into retro harlem diner
 
-structure prodcts as in tough cookie menu
+structure products as in tough cookie menu
 similar in order summary
 order form?
 cute popup

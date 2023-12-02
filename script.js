@@ -1,6 +1,6 @@
 const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
-const today = new Date();
+const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
@@ -8,7 +8,6 @@ const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 
-//koppla timeout till function som återställer hela sidan
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
 
 const products = [
@@ -145,7 +144,9 @@ const products = [
 ];
 
 function resetOrderForm() {
-    alert('Too slow, someone else is eating your donuts.')
+    alert('Too slow. Someone else is eating your donuts.')
+    //reset hela sidan, anropa funktionen för detta (används för rensa-knapp också)
+    //reset() för input, products[index].amount = 0 för added products
 };
 
 function decreaseAmount(e) {
@@ -184,14 +185,14 @@ function printProducts() {
             <li>
                 <img>${products.image}
                 <h2>${products.name}</h2>
-                <div>Price: <span>${products.price * priceIncrease}</span> kr</div>
+                <div>Price: <span>${Math.round(products.price * priceIncrease)}</span> kr</div>
                 <div>Rating: <span>${products.rating}</span></div>
                 <div>Category: <span>${products.category}</span></div>
                 <button class="decrease" data-id="${index}">-</button>
-                <div>Amount: <span>${products.amount}</span></div>
                 <button class="increase" data-id="${index}">+</button>
+                <div>Amount: <span>${products.amount}</span></div>
             </li>
-        `;
+        `; //Math.round för Price?
     });
 
     const btnDecrease = document.querySelectorAll('button.decrease');
@@ -223,9 +224,9 @@ function printProductsCart() {
 
         //10 or more of same product, 10 % discount
         if (products.amount > 0) {
-            let productsPrice = products.price; //vad fattas? jfr tidigare specialregler
-            if (products.amount >= 10) {
-                products.price *= 0.9;
+            let productsPrice = products.price;
+            if (products.amount >= 10) { //varför börjar den på 11
+                products.price *= 0.9; //exponentiell rabatt för varje klick på + knapp, hur stoppa detta
             };
 
             const adjustedProductsPrice = productsPrice * priceIncrease;
@@ -240,7 +241,7 @@ function printProductsCart() {
                     <div>Total: <span>${products.amount * adjustedProductsPrice}</span> kr</div>
                     
                 </article>
-            `;
+            `; //Math.round för Total?
         };
     });
 
@@ -250,11 +251,11 @@ function printProductsCart() {
 
     //Monday discount
     if (isMonday && currentHour > 3) {
-        sum *= 0.9;
+        sum *= 0.9; //Math.round?
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
-    cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`;
+    cartContainerHtml.innerHTML += `<p>Total sum: ${sum} kr</p>`; //Math.round för Total sum??
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
     //15+ products, free delivery

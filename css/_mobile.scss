@@ -1,12 +1,46 @@
+/*______________________
+_________HEADER_________
+______________________*/
+
 header {
     position: fixed;
     top: 0;
     width: 100vw;
-    color: #55253f;
-    background-color: #f96161;
+    background-color: #EFC9B4;
+    border-bottom: 3px solid #5D7F7A;
+    h1 {
+        text-transform: uppercase;
+        color: #1E3947;
+    }
 };
+
+/*
+__________________________
+____________MAIN__________
+__________________________
+*/
 
 main {
     margin-top: 100px;
-    background-color: #e1e9b7;
+    background-color: #F5F5F5;
+};
+
+/*
+___________________________
+__________PAGE ONE_________
+___________________________
+*/
+
+
+/*
+___________________________
+_________PAGE TWO__________
+___________________________
+*/
+
+#pageTwo {
+    #customerInfo {
+        display: grid;
+        justify-content: center;
+    } 
 };
