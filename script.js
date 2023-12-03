@@ -311,10 +311,12 @@ function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
 };
 
-function activateOrderButton() { //RegEx of death... Något är fel och jag ser inte vad
+const orderBtn = document.querySelector('#orderBtn');
+
+function activateOrderButton() { //RegEx of death... Den  aktiverar order knappen oavsett vad. Något är fel och jag ser inte vad.
     if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
-        console.log('aktivera');
+        orderBtn.removeAttribute('disabled');
     } else if(selectedPaymentOption === 'invoice' && !isPersonalIdNumberValid()) {
-        console.log('inaktivera');
+        orderBtn.setAttribute('disabled', '');
     }
 };
