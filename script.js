@@ -185,7 +185,6 @@ const sortNameAbc = products.sort((a, b) => {
     }
     return 0;
 });
-console.table(products);
 
 //Print products
 function printProducts() {
@@ -282,4 +281,40 @@ function printProductsCart() {
 
 printProducts();
 
- 
+const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
+
+cardInvoiceRadios.forEach(radioBtn => {
+    radioBtn.addEventListener('change', switchPaymentMethod);
+});
+
+const invoiceOption = document.querySelector('#invoice');
+const cardOption = document.querySelector('#card');
+let selectedPaymentOption = 'invoice';
+
+
+/*
+* Switches between invoice and card as payment options. Toggles their visibility.
+*/
+function switchPaymentMethod(e) {
+    invoiceOption.classList.toggle('hidden');
+    cardOption.classList.toggle('hidden');
+
+    selectedPaymentOption = e.target.value; 
+};
+
+const personalId = document.querySelector('#personalId');
+personalId.addEventListener('change', activateOrderButton);
+
+const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8}|\d{4}|\d{6}\d{4})/);
+
+function isPersonalIdNumberValid() {
+    return personalIdRegEx.exec(personalId.value);
+};
+
+function activateOrderButton() { //RegEx of death... Något är fel och jag ser inte vad
+    if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
+        console.log('aktivera');
+    } else if(selectedPaymentOption === 'invoice' && !isPersonalIdNumberValid()) {
+        console.log('inaktivera');
+    }
+};

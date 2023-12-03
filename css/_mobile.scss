@@ -48,5 +48,8 @@ ___________________________
     #customerInfo {
         display: grid;
         justify-content: center;
-    } 
+    }
+    .hidden {
+        display: none;
+    }
 };

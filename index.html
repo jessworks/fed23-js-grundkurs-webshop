@@ -31,11 +31,13 @@
             </div>
             <ul id="productsContainer"></ul>
         </div>
+    
         
         <div id="pageTwo">
-            <div id="cartContainer"></div>
+            <div id="cartContainer">
+            </div>
             <div id="orderForm">
-                <button class="btnToTop"><a href="#pageOne">back to top</a></button>
+                <button class="btnToTop"><a href="#pageOne">back to top</a><button>
                 <div id="customerInfo">
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName">
@@ -46,13 +48,49 @@
                     <label for="postalCode">Postal Code</label>
                     <input type="number" id="postalCode">
                     <label for="Town">Town</label>
-                    <input type="text" id="town">
+                    <input type="text" id="town">                        
                     <label for="dooorCode">Door Code</label>
                     <input type="number" id="doorCode">
                     <label for="phone">Phone</label>
-                    <input type="tel" id="phone">
+                    <input type="tel" id="phone">                   
                     <label for="email">E-Mail</label>
                     <input type="email" id="email">
+                </div>
+                
+                <div class="paymentOptions">
+                    <div class="selector">
+                        <label>
+                            <input type="radio" name="paymentOption" value="invoice" checked>
+                            <span>Invoice</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="paymentOption" value="card">
+                            <span>Card</span>
+                        </label>
+                    </div>
+                    <div class="invoice" id="invoice">
+                        <label>
+                            <span>Personal Id Number</span>
+                            <input type="text" name="personalId" id="personalId">
+                        </label>
+                    </div>
+                    <div class="card hidden" id="card">
+                        <label>
+                            <span>Card Number</span>
+                            <input type="number">
+                        </label>
+                        <label>
+                            <span>Expiry Date</span>
+                            <span>
+                                <input type="number" class="small" placeholder="YY">/<input type="number" class="small" placeholder="MM">
+                            </span>
+                        </label>
+                        <label>
+                            <span>CVC</span>
+                            <input type="number" placeholder="123">
+                        </label>
+                    </div>
+                    <button id="order" disabled>Place Order</button>
                 </div>
             </div>
         </div>
