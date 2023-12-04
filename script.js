@@ -8,6 +8,7 @@ const isSaturday = today.getDay() === 6;
 const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
+const invoiceBtn = document.querySelector('#invoiceBtn');
 
 //Reset all input
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
@@ -261,14 +262,10 @@ function printProductsCart() {
 
             sum += products.amount * adjustedProductsPrice;
 
-            /*
-            * Fattar att 'disable customer info' antagligen overrides den här för att 
-            det kommer senare(eller så är det bara fel kod). Jag kan disable invoiceBtn här, 
-            så koden borde även funka för invoice. Jag behöver sum, men den är lokal här.
-            Kan jag göra den igen och lägga if i switchPaymentMethod? Den behöver bli disabled och ha "Invoice is not a valid payment option."
-            */
-            if (sum > 10) {
-                invoice.setAttribute('disabled', '');
+            //Cart over 800 kr, invoice invalid option. Card btn syns,, men det får vara så just nu.
+            if (sum > 800) {
+                invoiceBtn.setAttribute('hidden', '');
+                invoice.setAttribute('hidden', '');
             }
 
             cartContainerHtml.innerHTML += 
