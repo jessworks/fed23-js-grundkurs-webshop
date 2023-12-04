@@ -2,14 +2,14 @@ const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
-//Price adjustments
+//Adjustments in pricing, fees, and payment options.
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
 const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 
-//reset all input
+//Reset all input
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
 
 //Validate for invoice, activate order button.
@@ -20,6 +20,7 @@ let selectedPaymentOption = 'invoice';
 const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
 const orderBtn = document.querySelector('#orderBtn');
+const invoice = document.querySelector('#invoice');
 
 
 const products = [
@@ -259,6 +260,16 @@ function printProductsCart() {
             const adjustedProductsPrice = productsPrice * priceIncrease;
 
             sum += products.amount * adjustedProductsPrice;
+
+            /*
+            * Fattar att 'disable customer info' antagligen overrides den här för att 
+            det kommer senare(eller så är det bara fel kod). Jag kan disable invoiceBtn här, 
+            så koden borde även funka för invoice. Jag behöver sum, men den är lokal här.
+            Kan jag göra den igen och lägga if i switchPaymentMethod? Den behöver bli disabled och ha "Invoice is not a valid payment option."
+            */
+            if (sum > 10) {
+                invoice.setAttribute('disabled', '');
+            }
 
             cartContainerHtml.innerHTML += 
             `
