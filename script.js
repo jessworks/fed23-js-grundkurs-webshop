@@ -2,22 +2,23 @@ const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
+//Price adjustments
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
 const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 
+//reset all input
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
 
+//Validate for invoice, activate order button.
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
 const invoiceOption = document.querySelector('#invoice');
 const cardOption = document.querySelector('#card');
 let selectedPaymentOption = 'invoice';
-
 const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
-
 const orderBtn = document.querySelector('#orderBtn');
 
 
@@ -294,10 +295,13 @@ function printProductsCart() {
 
 printProducts();
 
-
 /*
-* Switches between invoice and card as payment options. Toggles their visibility.
+____________________________________
+______CUSTOMER INFO VALIDATION______
+____________________________________
 */
+
+//Switches between invoice and card as payment options. Toggles their visibility.
 cardInvoiceRadios.forEach(radioBtn => {
     radioBtn.addEventListener('change', switchPaymentMethod);
 });
@@ -310,9 +314,7 @@ function switchPaymentMethod(e) {
 };
 
 
-/*
-* Validate personal id number and activate order button.
-*/
+//Validate personal id number and activate order button.
 personalId.addEventListener('change', activateOrderButton);
 
 function isPersonalIdNumberValid() {
