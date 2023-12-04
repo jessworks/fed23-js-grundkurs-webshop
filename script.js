@@ -10,6 +10,17 @@ const currentHour = today.getHours();
 
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
 
+const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
+const invoiceOption = document.querySelector('#invoice');
+const cardOption = document.querySelector('#card');
+let selectedPaymentOption = 'invoice';
+
+const personalId = document.querySelector('#personalId');
+const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
+
+const orderBtn = document.querySelector('#orderBtn');
+
+
 const products = [
     {
         image: [
@@ -175,7 +186,7 @@ function getPriceMultiplier() {
 
 /*Sort. En för varje sort funktion och kopplas till click evt. Vill göra den generella men vet fattar inte hur '?' delen tolkas.
 Den funkar där den står nu, men vart bor eventlistener och hur får jag listan att printas igen? 
-"click på filterknapp -> sotera på det sättet -> printa den i den sorterade ordningen"*/
+"click på filterknapp -> sortera på det sättet -> printa den i den sorterade ordningen"*/
 const sortNameAbc = products.sort((a, b) => {
     if (a.price < b.price) {
         return -1;
@@ -185,6 +196,7 @@ const sortNameAbc = products.sort((a, b) => {
     }
     return 0;
 });
+
 
 //Print products
 function printProducts() {
@@ -221,6 +233,7 @@ function printProducts() {
 
     printProductsCart();
 };
+
 
 //Print cart
 function printProductsCart() {
@@ -281,20 +294,14 @@ function printProductsCart() {
 
 printProducts();
 
-const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
-
-cardInvoiceRadios.forEach(radioBtn => {
-    radioBtn.addEventListener('change', switchPaymentMethod);
-});
-
-const invoiceOption = document.querySelector('#invoice');
-const cardOption = document.querySelector('#card');
-let selectedPaymentOption = 'invoice';
-
 
 /*
 * Switches between invoice and card as payment options. Toggles their visibility.
 */
+cardInvoiceRadios.forEach(radioBtn => {
+    radioBtn.addEventListener('change', switchPaymentMethod);
+});
+
 function switchPaymentMethod(e) {
     invoiceOption.classList.toggle('hidden');
     cardOption.classList.toggle('hidden');
@@ -302,18 +309,17 @@ function switchPaymentMethod(e) {
     selectedPaymentOption = e.target.value; 
 };
 
-const personalId = document.querySelector('#personalId');
-personalId.addEventListener('change', activateOrderButton);
 
-const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8}|\d{4}|\d{6}\d{4})/);
+/*
+* Validate personal id number and activate order button.
+*/
+personalId.addEventListener('change', activateOrderButton);
 
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
 };
 
-const orderBtn = document.querySelector('#orderBtn');
-
-function activateOrderButton() { //RegEx of death... Den  aktiverar order knappen oavsett vad. Något är fel och jag ser inte vad.
+function activateOrderButton() {
     if (selectedPaymentOption === 'invoice' && isPersonalIdNumberValid()) {
         orderBtn.removeAttribute('disabled');
     } else if(selectedPaymentOption === 'invoice' && !isPersonalIdNumberValid()) {
