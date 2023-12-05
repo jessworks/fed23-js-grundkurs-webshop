@@ -2,6 +2,12 @@ const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
+//filter on category
+const categoryOptions = Array.from(document.querySelectorAll('option[name="categoryOption"]'));
+const logLadyOption= document.querySelector('#logLady');
+const specialAgentOption = document.querySelector('#specialAgent');
+const stateTrooperOption = document.querySelector('#stateTrooper');
+
 //Adjustments in pricing, fees, and payment options.
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
@@ -190,9 +196,8 @@ function getPriceMultiplier() {
     };
 }
 
-/*Sort asc/desc. En för varje sort funktion och kopplas till click evt. 
-Den funkar där den står nu, men vart bor eventlistener och
-hur får jag listan att printas igen? 
+/*Sort asc/desc.
+Den funkar där den står nu, men placerar jag koden? 
 "click på filterknapp -> sortera på det sättet -> printa den i den sorterade ordningen"
 lägg till evtlistener och sätt på rätt plats
 */
@@ -257,12 +262,6 @@ const sortRating321 = products.sort((a, b) => {
 });
 
 //filter by category
-const categoryOptions = Array.from(document.querySelectorAll('option[name="categoryOption"]'));
-
-const logLadyOption= document.querySelector('#logLady');
-const specialAgentOption = document.querySelector('#specialAgent');
-const stateTrooperOption = document.querySelector('#stateTrooper');
-
 categoryOptions.forEach(category => {
     category.addEventListener('change', filterCategories);
 });
