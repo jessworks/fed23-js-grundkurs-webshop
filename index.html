@@ -22,11 +22,11 @@
                 <button id="productsFilterPriceAsc">123 icon</button>
                 <button id="productsFilterPriceDesc">321 icon</button>
                 <button id="productCategory">funnel icon</button> <!--Funnel btn öppnar option och label är hidden. Får man göra så?-->
-                <label id="productCategoryLabel"></label>
+                <label id="productCategoryLabel">Pick one</label>
                 <select id="productsFilterCategory">
-                    <option value="logLady">Log Lady</option>
-                    <option value="specialAgent">Special Agent</option>
-                    <option value="stateTrooper">State Trooper</option>
+                    <option id="logLady" value="logLady" name="categoryOption">Log Lady</option>
+                    <option id="specialAgent" value="specialAgent" name="categoryOption">Special Agent</option>
+                    <option id="stateTrooper" value="stateTrooper" name="categoryOption">State Trooper</option>
                 </select>
             </div>
             <ul id="productsContainer"></ul>
@@ -64,7 +64,7 @@
                             <span>Invoice</span>
                         </label>
                         <label>
-                            <input type="radio" name="paymentOption" value="card">
+                            <input type="radio" name="paymentOption" value="card" id="cardBtn">
                             <span>Card</span>
                         </label>
                     </div>

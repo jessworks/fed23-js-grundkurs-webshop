@@ -34,3 +34,38 @@ ex mimmi o musse pigg
         -grön bock/cart växer när produkt lagts till
 
 */
+
+
+function validateInput(inputElementId, checkSpecial) {
+
+  const inputField = document.getElementById(inputElementId).value;
+  const feedbackField = inputField.previousSibling;
+  
+  let hasSpecialError = false;
+  let customErrorMessage = '';
+  
+  if (checkSpecial !== '') {
+
+    switch(checkSpecial) {
+      case 'phoneNumber':
+        hasSpecialError = !inputField.match(/^[0-9]{10}$/);
+        customErrorMessage = 'Endast siffror.';
+        break;
+      case 'socialSecurityNumber':
+        //validera pers.nr. och aktivera order knapp
+        break;
+    }
+  }
+  
+  if (inputField.length === 0 || hasSpecialError) {
+    feedbackField.innerHTML = `* ${customErrorMessage}`;
+    return false;
+  } else {
+    feedbackField.innerHTML = '<i class="fa-solid fa-check"></i>';
+    return true;
+  }
+}
+
+validateInput('zip');
+validateInput('city');
+validateInput('phone', 'phoneNumber'); 

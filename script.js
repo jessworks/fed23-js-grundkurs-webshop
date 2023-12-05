@@ -9,6 +9,7 @@ const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 const invoiceBtn = document.querySelector('#invoiceBtn');
+const cardBtn = document.querySelector('#cardBtn');
 
 //Reset all input
 let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
@@ -18,8 +19,10 @@ const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paym
 const invoiceOption = document.querySelector('#invoice');
 const cardOption = document.querySelector('#card');
 let selectedPaymentOption = 'invoice';
+
 const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
+
 const orderBtn = document.querySelector('#orderBtn');
 const invoice = document.querySelector('#invoice');
 
@@ -35,7 +38,7 @@ const products = [
         name: 'Cherry Pie',
         price: 67,
         rating: 5,
-        category: 'special agent',
+        category: 'Special Agent',
         amount: 0,
     },
     {
@@ -48,7 +51,7 @@ const products = [
         name: 'Apple Pie',
         price: 67,
         rating: 4,
-        category: 'state trooper',
+        category: 'State Trooper',
         amount: 0,
     },
     {
@@ -61,7 +64,7 @@ const products = [
         name: 'Flat White',
         price: 47,
         rating: 4,
-        category: 'state trooper',
+        category: 'State Trooper',
         amount: 0,
     },
     {
@@ -74,7 +77,7 @@ const products = [
         name: 'Coffee, Black',
         price: 42,
         rating: 4,
-        category: 'special agent',
+        category: 'Special Agent',
         amount: 0,
     },
     {
@@ -87,7 +90,7 @@ const products = [
         name: 'Cherry Glazed Donut',
         price: 54,
         rating: 3,
-        category: 'log lady',
+        category: 'Log Lady',
         amount: 0,
     },
     {
@@ -100,7 +103,7 @@ const products = [
         name: 'Chocolate Glazed Donut',
         price: 54,
         rating: 4,
-        category: 'special agent',
+        category: 'Special Agent',
         amount: 0,
     },
     {
@@ -113,7 +116,7 @@ const products = [
         name: 'Donut, plain',
         price: 49,
         rating: 3,
-        category: 'special agent',
+        category: 'Special Agent',
         amount: 0,
     },
     {
@@ -126,7 +129,7 @@ const products = [
         name: 'Truffle Chip Cookie',
         price: 47,
         rating: 4.5,
-        category: 'log lady',
+        category: 'Log Lady',
         amount: 0,
     },
     {
@@ -139,7 +142,7 @@ const products = [
         name: 'Ham on Rye',
         price: 67,
         rating: 4,
-        category: 'special agent',
+        category: 'Special Agent',
         amount: 0,
     },
     {
@@ -152,7 +155,7 @@ const products = [
         name: 'Grilled Cheese',
         price: 59,
         rating: 3.5,
-        category: 'state trooper',
+        category: 'State Trooper',
         amount: 0,
     }
 ];
@@ -187,10 +190,33 @@ function getPriceMultiplier() {
     };
 }
 
-/*Sort. En för varje sort funktion och kopplas till click evt. Vill göra den generella men vet fattar inte hur '?' delen tolkas.
-Den funkar där den står nu, men vart bor eventlistener och hur får jag listan att printas igen? 
-"click på filterknapp -> sortera på det sättet -> printa den i den sorterade ordningen"*/
+/*Sort asc/desc. En för varje sort funktion och kopplas till click evt. 
+Den funkar där den står nu, men vart bor eventlistener och
+hur får jag listan att printas igen? 
+"click på filterknapp -> sortera på det sättet -> printa den i den sorterade ordningen"
+lägg till evtlistener och sätt på rätt plats
+*/
 const sortNameAbc = products.sort((a, b) => {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+});
+
+const sortNameCba = products.sort((a, b) => {
+    if (a.name > b.name) {
+        return -1;
+    }
+    if (a.name < b.name) {
+        return 1;
+    }
+    return 0;
+});
+
+const sortPrice123 = products.sort((a, b) => {
     if (a.price < b.price) {
         return -1;
     }
@@ -199,6 +225,46 @@ const sortNameAbc = products.sort((a, b) => {
     }
     return 0;
 });
+
+const sortPrice321 = products.sort((a, b) => {
+    if (a.price > b.price) {
+        return -1;
+    }
+    if (a.price < b.price) {
+        return 1;
+    }
+    return 0;
+});
+
+const sortRating123 = products.sort((a, b) => {
+    if (a.rating < b.rating) {
+        return -1;
+    }
+    if (a.rating > b.rating) {
+        return 1;
+    }
+    return 0;
+});
+
+const sortRating321 = products.sort((a, b) => {
+    if (a.rating > b.rating) {
+        return -1;
+    }
+    if (a.rating < b.rating) {
+        return 1;
+    }
+    return 0;
+});
+
+//filter by category
+
+const logLady = document.querySelector('#logLady');
+const specialAgent = document.querySelector('#specialAgent');
+const stateTrooper = document.querySelector('#stateTrooper');
+
+ function filterCategories(e) {
+
+ }
 
 
 //Print products
@@ -248,32 +314,33 @@ function printProductsCart() {
     let priceIncrease = getPriceMultiplier();
 
     //Cart
-    products.forEach(products => {
-        productsAmountOrdered += products.amount;
+    products.forEach(product => {
+        productsAmountOrdered += product.amount;
 
         //10 or more of same product, 10 % discount
-        if (products.amount > 0) {
-            let productsPrice = products.price;
-            if (products.amount >= 10) { //varför börjar den på 11
-                products.price *= 0.9; //exponentiell rabatt för varje klick på + knapp, hur stoppa detta
+        if (product.amount > 0) {
+            let productsPrice = product.price;
+            if (product.amount >= 10) {
             };
 
             const adjustedProductsPrice = productsPrice * priceIncrease;
 
-            sum += products.amount * adjustedProductsPrice;
+            sum += product.amount * adjustedProductsPrice;
 
-            //Cart over 800 kr, invoice invalid option. Card btn syns,, men det får vara så just nu.
+            //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
             if (sum > 800) {
-                invoiceBtn.setAttribute('hidden', '');
                 invoice.setAttribute('hidden', '');
+                invoiceBtn.setAttribute('hidden', '');
+                invoiceBtn.removeAttribute('checked');
+                //cardBtn.setAttribute('checked', '');
             }
 
             cartContainerHtml.innerHTML += 
             `
                 <article>
-                    <span>${products.name}</span>
-                    <div>Amount: <span>${products.amount}</span></div>
-                    <div>Total: <span>${Math.round(products.amount * adjustedProductsPrice)}</span> kr</div>
+                    <span>${product.name}</span>
+                    <div>Amount: <span>${product.amount}</span></div>
+                    <div>Total: <span>${Math.round(product.amount * adjustedProductsPrice)}</span> kr</div>
                     
                 </article>
             `;
