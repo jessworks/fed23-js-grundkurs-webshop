@@ -257,13 +257,22 @@ const sortRating321 = products.sort((a, b) => {
 });
 
 //filter by category
+const categoryOptions = Array.from(document.querySelectorAll('option[name="categoryOption"]'));
 
-const logLady = document.querySelector('#logLady');
-const specialAgent = document.querySelector('#specialAgent');
-const stateTrooper = document.querySelector('#stateTrooper');
+const logLadyOption= document.querySelector('#logLady');
+const specialAgentOption = document.querySelector('#specialAgent');
+const stateTrooperOption = document.querySelector('#stateTrooper');
+
+categoryOptions.forEach(category => {
+    category.addEventListener('change', filterCategories);
+});
 
  function filterCategories(e) {
+    logLadyOption.classList.toggle('hidden');
+    specialAgentOption.classList.toggle('hidden');
+    stateTrooperOption.classList.toggle('hidden');
 
+    selectedCategoryOption = e.target.value;
  }
 
 
