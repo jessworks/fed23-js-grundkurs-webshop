@@ -2,7 +2,15 @@ const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
-//filter on category
+//Sort on name, price, and rating.
+const productsSortAZBtn = document.querySelector('#productsSortAZ');
+const productsSortZABtn = document.querySelector('#productsSortZA');
+const productsSortPrice123Btn = document.querySelector('#productsSortPrice123');
+const productsSortPrice321Btn = document.querySelector('#productsSortPrice321');
+const productsSortRating123Btn = document.querySelector('#productsSortRating123');
+const productsSortRating321Btn = document.querySelector('#productsSortRating321');
+
+//Filter on category
 const categoryOptions = Array.from(document.querySelectorAll('option[name="categoryOption"]'));
 const logLadyOption= document.querySelector('#logLady');
 const specialAgentOption = document.querySelector('#specialAgent');
@@ -167,7 +175,7 @@ const products = [
 ];
 
 function resetOrderForm() {
-    alert('Too slow. Someone else is eating your donuts.')
+    alert('Too slow. Someone is eating your donuts.')
     //reset hela sidan, anropa funktionen för detta (används för rensa-knapp också)
     //reset() för input, products[index].amount = 0 för added products
 };
@@ -196,12 +204,9 @@ function getPriceMultiplier() {
     };
 }
 
-/*Sort asc/desc.
-Den funkar där den står nu, men placerar jag koden? 
-"click på filterknapp -> sortera på det sättet -> printa den i den sorterade ordningen"
-lägg till evtlistener och sätt på rätt plats
-*/
-const sortNameAbc = products.sort((a, b) => {
+//Sort asc/desc.
+/*
+const sortNameAZ = products.sort((a, b) => {
     if (a.name < b.name) {
         return -1;
     }
@@ -211,7 +216,7 @@ const sortNameAbc = products.sort((a, b) => {
     return 0;
 });
 
-const sortNameCba = products.sort((a, b) => {
+const sortNameZA = products.sort((a, b) => {
     if (a.name > b.name) {
         return -1;
     }
@@ -272,7 +277,7 @@ categoryOptions.forEach(category => {
     stateTrooperOption.classList.toggle('hidden');
 
     selectedCategoryOption = e.target.value;
- }
+ }; */
 
 
 //Print products
@@ -365,6 +370,7 @@ function printProductsCart() {
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
+    cartContainerHtml.innerHTML += `<div><label for="dicountCode">Enter discount code <input type="text" id="discountCode">`
     cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
