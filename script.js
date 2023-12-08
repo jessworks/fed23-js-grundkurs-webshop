@@ -212,8 +212,7 @@ function getPriceMultiplier() {
     };
 }
 
-//Sort asc/desc.
-
+//Sort products
 productsSortAZBtn.addEventListener('click', sortByNameAsc);
 
 function sortByNameAsc(e) {
@@ -230,67 +229,92 @@ function sortByNameAsc(e) {
     printProducts();
 };
 
+
+productsSortZABtn.addEventListener('click', sortByNameDesc);
+
+function sortByNameDesc(e) {
+    products.sort((a, b) => {
+        if (a.name > b.name) {
+            return -1;
+        }
+        if (a.name < b.name) {
+            return 1;
+        }
+        return 0;
+    });
+
+    printProducts();
+};
+
+
+productsSortPrice123Btn.addEventListener('click', sortByPriceAsc);
+
+function sortByPriceAsc(e) {
+    products.sort((a, b) => {
+    if (a.price < b.price) {
+        return -1;
+    }
+    if (a.price > b.price) {
+        return 1;
+    }
+    return 0;
+    });
+
+    printProducts();
+};
+
+
+productsSortPrice321Btn.addEventListener('click', sortByPriceDesc);
+
+function sortByPriceDesc(e) {
+    products.sort((a, b) => {
+        if (a.price > b.price) {
+        return -1;
+    }
+        if (a.price < b.price) {
+        return 1;
+    }
+    return 0;
+    });
+
+    printProducts();
+};
+
+
+productsSortRating123Btn.addEventListener('click', sortByRatingAsc);
+
+function sortByRatingAsc(e) {
+    products.sort((a, b) => {
+    if (a.rating < b.rating) {
+        return -1;
+    }
+    if (a.rating > b.rating) {
+        return 1;
+    }
+    return 0;
+    });
+
+    printProducts();
+}
+
+productsSortRating321Btn.addEventListener('click', sortByRatingDesc);
+
+function sortByRatingDesc(e) {
+
+    products.sort((a, b) => {
+        if (a.rating > b.rating) {
+            return -1;
+        }
+        if (a.rating < b.rating) {
+            return 1;
+        }
+        return 0;
+    });
+
+    printProducts();
+};
+
 /*
-const sortNameAZ = products.sort((a, b) => {
-    if (a.name < b.name) {
-        return -1;
-    }
-    if (a.name > b.name) {
-        return 1;
-    }
-    return 0;
-});
-
-const sortNameZA = products.sort((a, b) => {
-    if (a.name > b.name) {
-        return -1;
-    }
-    if (a.name < b.name) {
-        return 1;
-    }
-    return 0;
-});
-
-const sortPrice123 = products.sort((a, b) => {
-    if (a.price < b.price) {
-        return -1;
-    }
-    if (a.price > b.price) {
-        return 1;
-    }
-    return 0;
-});
-
-const sortPrice321 = products.sort((a, b) => {
-    if (a.price > b.price) {
-        return -1;
-    }
-    if (a.price < b.price) {
-        return 1;
-    }
-    return 0;
-});
-
-const sortRating123 = products.sort((a, b) => {
-    if (a.rating < b.rating) {
-        return -1;
-    }
-    if (a.rating > b.rating) {
-        return 1;
-    }
-    return 0;
-});
-
-const sortRating321 = products.sort((a, b) => {
-    if (a.rating > b.rating) {
-        return -1;
-    }
-    if (a.rating < b.rating) {
-        return 1;
-    }
-    return 0;
-});
-
 //filter by category
 categoryOptions.forEach(category => {
     category.addEventListener('change', filterCategories);
