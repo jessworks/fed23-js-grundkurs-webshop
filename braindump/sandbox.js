@@ -74,7 +74,7 @@ validateInput('phone', 'phoneNumber');
 productsSortAZBtn.addEventListener('click', sortByNameAsc);
 
 function sortByNameAsc(e) {
-  const sortNameAZ = products.sort((a, b) => {
+  products.sort((a, b) => {
     if (a.name < b.name) {
         return -1;
     }

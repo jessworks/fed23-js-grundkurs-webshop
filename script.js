@@ -26,7 +26,8 @@ const invoiceBtn = document.querySelector('#invoiceBtn');
 const cardBtn = document.querySelector('#cardBtn');
 
 //Reset all input
-let slownessTimeout = setTimeout(resetOrderForm, 1000 * 60 * 15);
+let slownessTimeout = setTimeout(emptyOrderForm, 1000 * 60 * 15);
+const customerInfo = document.querySelector('#customerInfo');
 
 //Validate for invoice, activate order button.
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
@@ -174,8 +175,15 @@ const products = [
     }
 ];
 
-function resetOrderForm() {
+//Reset all input
+function clearPage() { //Den här funkar inte. 
+    customerInfo.reset();
+    products[index].amount = 0;
+};
+
+function emptyOrderForm() {
     alert('Too slow. Someone is eating your donuts.')
+    clearPage();
     //reset hela sidan, anropa funktionen för detta (används för rensa-knapp också)
     //reset() för input, products[index].amount = 0 för added products
 };
@@ -205,6 +213,23 @@ function getPriceMultiplier() {
 }
 
 //Sort asc/desc.
+
+productsSortAZBtn.addEventListener('click', sortByNameAsc);
+
+function sortByNameAsc(e) {
+    products.sort((a, b) => {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {    
+            return 1;
+        }
+        return 0;
+    });
+
+    printProducts();
+};
+
 /*
 const sortNameAZ = products.sort((a, b) => {
     if (a.name < b.name) {
@@ -301,6 +326,7 @@ function printProducts() {
             </li>
         `;
     });
+    
 
     const btnDecrease = document.querySelectorAll('button.decrease');
     const btnIncrease = document.querySelectorAll('button.increase');
@@ -312,6 +338,7 @@ function printProducts() {
     btnIncrease.forEach(btn => {
         btn.addEventListener('click', increaseAmount);
     });
+
 
     printProductsCart();
 };
@@ -417,3 +444,5 @@ function activateOrderButton() {
         orderBtn.setAttribute('disabled', '');
     }
 };
+
+//order confirmation
