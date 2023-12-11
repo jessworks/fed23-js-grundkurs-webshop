@@ -193,7 +193,6 @@ function getPriceMultiplier() {
     };
 }
 
-
 // Print products
 function printProducts() {
     productsContainerHtml.innerHTML = '';
@@ -421,6 +420,7 @@ function emptyCartTooSlow() {
 
     emptyCart();
 };
+
 
 /*
 ____________________________________
