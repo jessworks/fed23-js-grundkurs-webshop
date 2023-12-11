@@ -10,12 +10,6 @@ const productsSortPrice321Btn = document.querySelector('#productsSortPrice321');
 const productsSortRating123Btn = document.querySelector('#productsSortRating123');
 const productsSortRating321Btn = document.querySelector('#productsSortRating321');
 
-//Filter on category
-const categoryOptions = Array.from(document.querySelectorAll('option[name="categoryOption"]'));
-const logLadyOption= document.querySelector('#logLady');
-const specialAgentOption = document.querySelector('#specialAgent');
-const stateTrooperOption = document.querySelector('#stateTrooper');
-
 //Adjustments in pricing, fees, and payment options.
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
@@ -212,6 +206,7 @@ function getPriceMultiplier() {
     };
 }
 
+
 //Sort products
 productsSortAZBtn.addEventListener('click', sortByNameAsc);
 
@@ -313,20 +308,6 @@ function sortByRatingDesc(e) {
 
     printProducts();
 };
-
-/*
-//filter by category
-categoryOptions.forEach(category => {
-    category.addEventListener('change', filterCategories);
-});
-
- function filterCategories(e) {
-    logLadyOption.classList.toggle('hidden');
-    specialAgentOption.classList.toggle('hidden');
-    stateTrooperOption.classList.toggle('hidden');
-
-    selectedCategoryOption = e.target.value;
- }; */
 
 
 //Print products

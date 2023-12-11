@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dale & the Donuts is the last stop for travelers sth...">
+    <meta name="description" content="Dale & the Donuts offers sweet dreams for those heading to twilight dreamland.">
     <title>Dale & the Donuts</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Dale & the Donuts</h1>
-        <button class="btnToCart"><a href="#pageTwo">cart icon</a></button> 
+        <a href="#pageTwo" class="toCart">cart icon</a> 
     </header>
 
     <main>
@@ -36,11 +36,10 @@
     
         
         <div id="pageTwo">
-            <div id="cartContainer">
-            </div>
-            <div id="orderForm">
+            <div id="cartContainer"></div>
+            <form id="orderForm">
                 <button class="emptyCart" id="emptyCart">empty cart</button>
-                <button class="btnToTop"><a href="#pageOne">back to top</a><button>
+                <a href="#pageOne" class="toTop">back to top</a><button>
                 
                 <div id="customerInfo">
                     <label for="firstName">First Name</label>
@@ -104,9 +103,10 @@
                             <span>I accept that Dale & the Donuts handle my personal information in accordance with the GDPR.</span>
                         </label>
                     </div>
+                    <input type="reset" value="Reset">
                     <button id="orderBtn" disabled>Place Order</button>
                 </div>
-            </div>
+            </form>
         </div>
     </main>
 
