@@ -2,7 +2,7 @@ const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
 
-//Sort on name, price, and rating.
+// Sort on name, price, and rating.
 const productsSortAZBtn = document.querySelector('#productsSortAZ');
 const productsSortZABtn = document.querySelector('#productsSortZA');
 const productsSortPrice123Btn = document.querySelector('#productsSortPrice123');
@@ -10,7 +10,7 @@ const productsSortPrice321Btn = document.querySelector('#productsSortPrice321');
 const productsSortRating123Btn = document.querySelector('#productsSortRating123');
 const productsSortRating321Btn = document.querySelector('#productsSortRating321');
 
-//Adjustments in pricing, fees, and payment options.
+// Adjustments in pricing, fees, and payment options.
 const isFriday = today.getDay() === 5;
 const isSaturday = today.getDay() === 6;
 const isSunday = today.getDay() === 0;
@@ -19,11 +19,11 @@ const currentHour = today.getHours();
 const invoiceBtn = document.querySelector('#invoiceBtn');
 const cardBtn = document.querySelector('#cardBtn');
 
-//Reset all input
-let slownessTimeout = setTimeout(emptyOrderForm, 1000 * 60 * 15);
-const customerInfo = document.querySelector('#customerInfo');
+// Empty cart
+const emptyCartBtn = document.querySelector('#emptyCart');
+let slownessTimeout = setTimeout(emptyCartTooSlow, 1000 * 60 * 15);
 
-//Validate for invoice, activate order button.
+// Validate for invoice, activate order button.
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
 const invoiceOption = document.querySelector('#invoice');
 const cardOption = document.querySelector('#card');
@@ -34,7 +34,6 @@ const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8
 
 const orderBtn = document.querySelector('#orderBtn');
 const invoice = document.querySelector('#invoice');
-
 
 const products = [
     {
@@ -169,18 +168,6 @@ const products = [
     }
 ];
 
-//Reset all input
-function clearPage() { //Den här funkar inte. 
-    customerInfo.reset();
-    products[index].amount = 0;
-};
-
-function emptyOrderForm() {
-    alert('Too slow. Someone is eating your donuts.')
-    clearPage();
-    //reset hela sidan, anropa funktionen för detta (används för rensa-knapp också)
-    //reset() för input, products[index].amount = 0 för added products
-};
 
 function decreaseAmount(e) {
     const index = e.currentTarget.dataset.id;
@@ -207,7 +194,114 @@ function getPriceMultiplier() {
 }
 
 
-//Sort products
+// Print products
+function printProducts() {
+    productsContainerHtml.innerHTML = '';
+
+    let priceIncrease = getPriceMultiplier();
+
+    products.forEach((products, index) => {
+        productsContainerHtml.innerHTML += 
+        `
+            <li>
+                <img>${products.image}
+                <h2>${products.name}</h2>
+                <div>Price: <span>${Math.round(products.price * priceIncrease)}</span> kr</div>
+                <div>Rating: <span>${products.rating}</span></div>
+                <div>Category: <span>${products.category}</span></div>
+                <button class="decrease" data-id="${index}">-</button>
+                <button class="increase" data-id="${index}">+</button>
+                <div>Amount: <span>${products.amount}</span></div>
+            </li>
+        `;
+    });
+    
+
+    const btnDecrease = document.querySelectorAll('button.decrease');
+    const btnIncrease = document.querySelectorAll('button.increase');
+
+    btnDecrease.forEach(btn => {
+        btn.addEventListener('click', decreaseAmount);
+    });
+
+    btnIncrease.forEach(btn => {
+        btn.addEventListener('click', increaseAmount);
+    });
+
+
+    printProductsCart();
+};
+
+
+// Print cart
+function printProductsCart() {
+    cartContainerHtml.innerHTML = '';
+
+    let sum = 0;
+    let productsAmountOrdered = 0;
+    let msg = '';
+    let priceIncrease = getPriceMultiplier();
+
+    //Cart
+    products.forEach(product => {
+        productsAmountOrdered += product.amount;
+
+        //10 or more of same product, 10 % discount
+        if (product.amount > 0) {
+            let productsPrice = product.price;
+            if (product.amount >= 10) {
+            };
+
+            const adjustedProductsPrice = productsPrice * priceIncrease;
+
+            sum += product.amount * adjustedProductsPrice;
+
+            //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
+            if (sum > 800) {
+                invoice.setAttribute('hidden', '');
+                invoiceBtn.setAttribute('hidden', '');
+                invoiceBtn.removeAttribute('checked');
+                //cardBtn.setAttribute('checked', '');
+            }
+
+            cartContainerHtml.innerHTML += 
+            `
+                <article>
+                    <span>${product.name}</span>
+                    <div>Amount: <span>${product.amount}</span></div>
+                    <div>Total: <span>${Math.round(product.amount * adjustedProductsPrice)}</span> kr</div>
+                    
+                </article>
+            `;
+        };
+    });
+
+    if (sum <= 0) {
+        return;
+    }
+
+    //Monday discount
+    if (isMonday && currentHour > 3) {
+        sum *= 0.9; 
+        msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
+    };
+
+    cartContainerHtml.innerHTML += `<div><label for="dicountCode">Enter discount code <input type="text" id="discountCode">`
+    cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
+    cartContainerHtml.innerHTML += `<div>${msg}</div>`;
+
+    //15+ products, free delivery
+    if (productsAmountOrdered > 15) {
+        cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
+    } else {
+        cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
+    };
+};
+
+printProducts();
+
+
+// Sort products
 productsSortAZBtn.addEventListener('click', sortByNameAsc);
 
 function sortByNameAsc(e) {
@@ -310,111 +404,23 @@ function sortByRatingDesc(e) {
 };
 
 
-//Print products
-function printProducts() {
-    productsContainerHtml.innerHTML = '';
+// Reset cart
+emptyCartBtn.addEventListener('click', emptyCart);
 
-    let priceIncrease = getPriceMultiplier();
-
-    products.forEach((products, index) => {
-        productsContainerHtml.innerHTML += 
-        `
-            <li>
-                <img>${products.image}
-                <h2>${products.name}</h2>
-                <div>Price: <span>${Math.round(products.price * priceIncrease)}</span> kr</div>
-                <div>Rating: <span>${products.rating}</span></div>
-                <div>Category: <span>${products.category}</span></div>
-                <button class="decrease" data-id="${index}">-</button>
-                <button class="increase" data-id="${index}">+</button>
-                <div>Amount: <span>${products.amount}</span></div>
-            </li>
-        `;
-    });
-    
-
-    const btnDecrease = document.querySelectorAll('button.decrease');
-    const btnIncrease = document.querySelectorAll('button.increase');
-
-    btnDecrease.forEach(btn => {
-        btn.addEventListener('click', decreaseAmount);
-    });
-
-    btnIncrease.forEach(btn => {
-        btn.addEventListener('click', increaseAmount);
-    });
-
-
-    printProductsCart();
-};
-
-
-//Print cart
-function printProductsCart() {
+function emptyCart() { // Tar bort cart, men products.amount återställs inte.
     cartContainerHtml.innerHTML = '';
 
-    let sum = 0;
-    let productsAmountOrdered = 0;
-    let msg = '';
-    let priceIncrease = getPriceMultiplier();
-
-    //Cart
-    products.forEach(product => {
-        productsAmountOrdered += product.amount;
-
-        //10 or more of same product, 10 % discount
-        if (product.amount > 0) {
-            let productsPrice = product.price;
-            if (product.amount >= 10) {
-            };
-
-            const adjustedProductsPrice = productsPrice * priceIncrease;
-
-            sum += product.amount * adjustedProductsPrice;
-
-            //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
-            if (sum > 800) {
-                invoice.setAttribute('hidden', '');
-                invoiceBtn.setAttribute('hidden', '');
-                invoiceBtn.removeAttribute('checked');
-                //cardBtn.setAttribute('checked', '');
-            }
-
-            cartContainerHtml.innerHTML += 
-            `
-                <article>
-                    <span>${product.name}</span>
-                    <div>Amount: <span>${product.amount}</span></div>
-                    <div>Total: <span>${Math.round(product.amount * adjustedProductsPrice)}</span> kr</div>
-                    
-                </article>
-            `;
-        };
-    });
-
-    if (sum <= 0) {
-        return;
-    }
-
-    //Monday discount
-    if (isMonday && currentHour > 3) {
-        sum *= 0.9; 
-        msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
-    };
-
-    cartContainerHtml.innerHTML += `<div><label for="dicountCode">Enter discount code <input type="text" id="discountCode">`
-    cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
-    cartContainerHtml.innerHTML += `<div>${msg}</div>`;
-
-    //15+ products, free delivery
-    if (productsAmountOrdered > 15) {
-        cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
-    } else {
-        cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
+    for (let i = 0; i < products.length; i++) {
+        products[index].amount = 0;
     };
 };
 
-printProducts();
+
+function emptyCartTooSlow() {
+    alert('Too slow. Someone is eating your donuts.');
+
+    emptyCart();
+};
 
 /*
 ____________________________________
@@ -422,7 +428,7 @@ ______CUSTOMER INFO VALIDATION______
 ____________________________________
 */
 
-//Switches between invoice and card as payment options. Toggles their visibility.
+// Switches between invoice and card as payment options. Toggles their visibility.
 cardInvoiceRadios.forEach(radioBtn => {
     radioBtn.addEventListener('change', switchPaymentMethod);
 });
@@ -435,7 +441,7 @@ function switchPaymentMethod(e) {
 };
 
 
-//Validate personal id number and activate order button.
+// Validate personal id number and activate order button.
 personalId.addEventListener('change', activateOrderButton);
 
 function isPersonalIdNumberValid() {
@@ -450,4 +456,4 @@ function activateOrderButton() {
     }
 };
 
-//order confirmation
+// Order confirmation
