@@ -34,8 +34,12 @@
             <!--<a href="#pageOne" class="toTop">back to top</a><button>-->
             <form id="orderForm">
                 <div id="customerInfo">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName">
+                    <label>
+                        <span>First Name</span>
+                        <div id="firstNameErrorMsg"></div>
+                        <input type="text" id="firstName">
+                    </label>
+                    
                     <label for="lastName">Last Name</label>
                     <input type="text" id="lastName">
                     <label for="streetAddress">Street Address</label>

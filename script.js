@@ -255,14 +255,6 @@ function printProductsCart() {
 
             sum += product.amount * adjustedProductsPrice;
 
-            //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
-            if (sum > 800) {
-                invoice.setAttribute('hidden', '');
-                invoiceBtn.setAttribute('hidden', '');
-                invoiceBtn.removeAttribute('checked');
-                //cardBtn.setAttribute('checked', '');
-            }
-
             cartContainerHtml.innerHTML += 
             `
                 <article>
@@ -289,12 +281,22 @@ function printProductsCart() {
     cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
+    //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
+    if (sum > 800) {
+        invoice.setAttribute('hidden', '');
+        invoiceBtn.setAttribute('hidden', '');
+        invoiceBtn.removeAttribute('checked');
+        //cardBtn.setAttribute('checked', '');
+    };
+
     //15+ products, free delivery
     if (productsAmountOrdered > 15) {
         cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
     } else {
         cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
     };
+
+    
 };
 
 printProducts();
@@ -442,7 +444,7 @@ function switchPaymentMethod(e) {
 
 
 // Validate personal id number and activate order button.
-personalId.addEventListener('change', activateOrderButton);
+/*personalId.addEventListener('change', activateOrderButton);
 
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
@@ -454,6 +456,25 @@ function activateOrderButton() {
     } else if(selectedPaymentOption === 'invoice' && !isPersonalIdNumberValid()) {
         orderBtn.setAttribute('disabled', '');
     }
+};*/
+
+
+
+function activateOrderBtn() { // Funkar, men var/hur anropa?
+    const firstName = document.querySelector('#firstName').value;
+    const firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');
+
+    if (firstName.length === 0) {
+        firstNameErrorMsg.innerHTML = 'empty';
+        orderBtn.setAttribute('disabled', '');
+        return false;
+    } else {
+        firstNameErrorMsg.innerHTML = 'validated';
+        orderBtn.removeAttribute('disabled');
+        return true;
+    };
 };
+
+activateOrderBtn();
 
 // Order confirmation
