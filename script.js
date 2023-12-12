@@ -281,14 +281,6 @@ function printProductsCart() {
     cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
-    //Cart over 800 kr, invoice invalid option. Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
-    if (sum > 800) {
-        invoice.setAttribute('hidden', '');
-        invoiceBtn.setAttribute('hidden', '');
-        invoiceBtn.removeAttribute('checked');
-        //cardBtn.setAttribute('checked', '');
-    };
-
     //15+ products, free delivery
     if (productsAmountOrdered > 15) {
         cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
@@ -296,7 +288,17 @@ function printProductsCart() {
         cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
     };
 
-    
+    /* Cart over 800 kr, invoice invalid option.
+    * Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
+    * 15+ products overrides 800+ oavsett i vilken ordning de placeras.
+    * Kan inte göra if med || vilken som kommer först beror på produktens pris
+    */
+    if (sum > 800) {
+        invoice.setAttribute('hidden', '');
+        invoiceBtn.setAttribute('hidden', '');
+        invoiceBtn.removeAttribute('checked');
+        //cardBtn.setAttribute('checked', '');
+    };
 };
 
 printProducts();
@@ -465,11 +467,11 @@ function activateOrderBtn() { // Funkar, men var/hur anropa?
     const firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');
 
     if (firstName.length === 0) {
-        firstNameErrorMsg.innerHTML = 'empty';
+        firstNameErrorMsg.innerHTML = 'Fill out this field.';
         orderBtn.setAttribute('disabled', '');
         return false;
     } else {
-        firstNameErrorMsg.innerHTML = 'validated';
+        firstNameErrorMsg.innerHTML = '';
         orderBtn.removeAttribute('disabled');
         return true;
     };
