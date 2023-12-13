@@ -416,6 +416,7 @@ function emptyCart() { // Tar bort cart, men products.amount återställs inte.
     for (let i = 0; i < products.length; i++) {
         products[index].amount = 0;
     };
+
 };
 
 
