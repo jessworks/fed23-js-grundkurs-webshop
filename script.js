@@ -121,7 +121,7 @@ const products = [
                 alt: 'placeholder',
             },
         ],
-        name: 'Donut, plain',
+        name: 'Caramel Drizzle Donut',
         price: 49,
         rating: 3,
         category: 'Special Agent',
@@ -134,7 +134,7 @@ const products = [
                 alt: 'placeholder',
             },
         ],
-        name: 'Truffle Chip Cookie',
+        name: 'Choc Chip Cookie',
         price: 47,
         rating: 4.5,
         category: 'Log Lady',
@@ -420,7 +420,7 @@ function emptyCart() { // Tar bort cart, men products.amount återställs inte.
 
 
 function emptyCartTooSlow() {
-    alert('Too slow. Someone is eating your donuts.');
+    alert('Too late. Someone is eating your donuts.');
 
     emptyCart();
 };
