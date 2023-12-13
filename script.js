@@ -249,6 +249,7 @@ function printProductsCart() {
         if (product.amount > 0) {
             let productsPrice = product.price;
             if (product.amount >= 10) {
+                productsPrice *= 0.9;
             };
 
             const adjustedProductsPrice = productsPrice * priceIncrease;
