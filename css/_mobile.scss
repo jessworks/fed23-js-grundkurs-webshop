@@ -14,9 +14,6 @@ header {
         text-transform: uppercase;
         color: #1E3947;
     }
-    .btnToCart {
-        background-color: #CED2BA;
-    }
 };
 
 /*
@@ -33,21 +30,18 @@ main {
 
 /*
 ___________________________
-__________PAGE ONE_________
+____PRODUCTS LISTING_______
 ___________________________
 */
 
 
 /*
 ___________________________
-_________PAGE TWO__________
+___CART & CUSTOMER INFO____
 ___________________________
 */
 
-#pageTwo {
-    .btnToTop {
-        background-color: #CED2BA;
-    }
+#cart {
     #customerInfo {
         display: grid;
         justify-content: center;

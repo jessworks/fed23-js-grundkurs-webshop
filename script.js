@@ -199,18 +199,18 @@ function printProducts() {
 
     let priceIncrease = getPriceMultiplier();
 
-    products.forEach((products, index) => {
+    products.forEach((product, index) => {
         productsContainerHtml.innerHTML += 
         `
             <li>
-                <img>${products.image}
-                <h2>${products.name}</h2>
-                <div>Price: <span>${Math.round(products.price * priceIncrease)}</span> kr</div>
-                <div>Rating: <span>${products.rating}</span></div>
-                <div>Category: <span>${products.category}</span></div>
+                <img src="${product.image[0].src}">
+                <h2>${product.name}</h2>
+                <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
+                <div>Rating: <span>${product.rating}</span></div>
+                <div>Category: <span>${product.category}</span></div>
                 <button class="decrease" data-id="${index}">-</button>
                 <button class="increase" data-id="${index}">+</button>
-                <div>Amount: <span>${products.amount}</span></div>
+                <div>Amount: <span>${product.amount}</span></div>
             </li>
         `;
     });
@@ -414,9 +414,11 @@ function emptyCart() { // Tar bort cart, men products.amount återställs inte.
     cartContainerHtml.innerHTML = '';
 
     for (let i = 0; i < products.length; i++) {
-        products[index].amount = 0;
-    };
-
+        products[i].amount = 0;
+    }
+    console.table(products);
+    
+    printProducts();
 };
 
 
