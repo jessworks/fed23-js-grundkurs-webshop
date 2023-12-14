@@ -205,7 +205,7 @@ function printProducts() {
         productsContainerHtml.innerHTML += 
         `
             <li class="products">
-                <img src="${product.image[0].src}" loading="lazy" height="300" width="300">
+                <img src="${product.image[0].src}" alt="${product.image[0].alt}" loading="lazy" height="300" width="300">
                 <h2 class="productName">${product.name}</h2>
                 <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
                 <div>Rating: <span>${product.rating}</span></div>
