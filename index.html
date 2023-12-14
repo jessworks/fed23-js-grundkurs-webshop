@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dale & the Donuts offers sweet dreams for those heading to twilight dreamland.">
+    <meta name="description" content="Dale & the Donuts offers a damn fine cup of coffee with your pie.">
     <title>Dale & the Donuts</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300&family=Syncopate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300" rel="stylesheet">
     
 </head>
 <body>
     <header>
         <h1>Dale & the Donuts</h1>
-        <a href="#cart" class="toCart">cart icon</a> 
+        <a href="#cart" class="toCart"><img src="images/shopping_cart_FILL0_wght400_GRAD0_opsz24.png"></a> 
     </header>
 
     <main>
-        <div id="pageOne">
-            <div id="productsSort">
+        <div id="productListing">
+            <div class="productsSort" id="productsSort">
                 <button id="productsSortAZ">a-z icon</button>
                 <button id="productsSortZA">z-a icon</button>
                 <button id="productsSortPrice123">123 icon</button>
@@ -35,8 +35,7 @@
         <div id="cart">
             <div id="cartContainer"></div>
             <button class="emptyCart" id="emptyCart">empty cart</button>
-            <!--<a href="#pageOne" class="toTop">back to top</a><button>-->
-            <form id="orderForm">
+            <form class="orderForm" id="orderForm">
                 <div id="customerInfo">
                     <label>
                         <span>First Name</span>
@@ -113,18 +112,21 @@
                             <input type="number" placeholder="123">
                         </label>
                     </div>
-                    <div id="newsGdprBtns">
-                        <label id="newsletterBtn">
+                    <div 
+                   class="newsGdprBtns" id="newsGdprBtns">
+                        <label class="newsletterBtn" id="newsletterBtn">
                             <input type="checkbox" name="newsletter" checked>
                             <span>Get sweet letters from us.</span>
                         </label>
-                        <label id="gdprBtn">
+                        <label class="gdprBtn" id="gdprBtn">
                             <input type="checkbox" name="gdpr">
                             <span>I accept that Dale & the Donuts handle my personal information in accordance with the GDPR.</span>
                         </label>
                     </div>
-                    <input type="reset" value="Reset">
-                    <button id="orderBtn" disabled>Place Order</button>
+                    <div class="ResetAndOrderBtns">
+                        <input type="reset" value="Reset" class="resetBtn">
+                        <button class="orderBtn" id="orderBtn" disabled>Place Order</button>
+                    </div>
                 </div>
             </form>
         </div>

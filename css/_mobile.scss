@@ -6,13 +6,18 @@ header {
     position: fixed;
     top: 0;
     width: 100vw;
-    background-color: #EFC9B4;
-    border-bottom: 3px solid #5D7F7A;
+    background-color: #F4DFC8;
+    border-bottom: 3px solid #776B5D;
     h1 {
-        font-family: 'Syncopate', sans-serif;
+        margin-left: 35px;
+        font-family: 'Red Hat Display', sans-serif;
         font-size: 2rem;
         text-transform: uppercase;
-        color: #1E3947;
+    }
+    .toCart {
+        position: absolute;
+        right: 32px;
+        top: 32px;
     }
 };
 
@@ -25,14 +30,39 @@ __________________________
 main {
     font-family: 'Red Hat Display', sans-serif;
     margin-top: 100px;
-    background-color: #F5F5F5;
-};
+    background-color: #FAF6F0;
+    
+    button {
+        border-color: #28221b;
+        background-color: #F4DFC8;
+    }
 
 /*
 ___________________________
 ____PRODUCTS LISTING_______
 ___________________________
 */
+
+    .productsSort {
+        margin-top: 80px;
+        margin-bottom: 40px;
+    }
+
+    .products {
+        list-style: none;
+
+            .productName {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .amount {
+                margin-bottom: 40px;
+            }
+            .decreaseBtn, .increaseBtn {
+                border-radius: 20%;
+            }
+    }
+};
 
 
 /*
@@ -44,9 +74,35 @@ ___________________________
 #cart {
     #customerInfo {
         display: grid;
-        justify-content: center;
+        justify-content: start;
     }
     .hidden {
         display: none;
+    }
+    
+    .emptyCart {
+        margin-left: 35px;
+        margin-bottom: 32px;
+    }
+
+    .orderForm {
+        margin-left: 35px;
+    
+        .selector {
+            margin-top: 32px;
+            margin-bottom: 8px;
+        }
+
+        .newsGdprBtns {
+            display: grid;
+        
+            .newsletterBtn {
+                margin-top: 32px;
+            }
+            .gdprBtn {
+                margin-top: 12px;
+                margin-bottom: 16px;
+            }
+        }
     }
 };

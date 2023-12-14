@@ -35,7 +35,7 @@ const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
 
 const orderBtn = document.querySelector('#orderBtn');
-const invoice = document.querySelector('#invoice');
+
 
 const products = [
     {
@@ -204,15 +204,15 @@ function printProducts() {
     products.forEach((product, index) => {
         productsContainerHtml.innerHTML += 
         `
-            <li>
+            <li class="products">
                 <img src="${product.image[0].src}" loading="lazy" height="300" width="300">
-                <h2>${product.name}</h2>
+                <h2 class="productName">${product.name}</h2>
                 <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
                 <div>Rating: <span>${product.rating}</span></div>
                 <div>Category: <span>${product.category}</span></div>
-                <button class="decrease" data-id="${index}">-</button>
-                <button class="increase" data-id="${index}">+</button>
-                <div>Amount: <span>${product.amount}</span></div>
+                <button class="decreaseBtn" data-id="${index}">-</button>
+                <button class="increaseBtn" data-id="${index}">+</button>
+                <div class="amount">Amount: <span>${product.amount}</span></div>
             </li>
         `;
     });
@@ -291,17 +291,13 @@ function printProductsCart() {
         cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
     };
 
-    /* Cart over 800 kr, invoice invalid option.
-    * Card btn syns och måste väljas för att inputfälten ska synas, men det får vara så just nu.
-    * 15+ products overrides 800+ oavsett i vilken ordning de placeras.
-    * Kan inte göra if med || vilken som kommer först beror på produktens pris
-    */
+    //* Cart over 800 kr, invoice invalid option. --> FUNKAR INTE
     if (sum > 800) {
-        invoice.setAttribute('hidden', '');
+        invoiceOption.setAttribute('hidden', '');
         invoiceBtn.setAttribute('hidden', '');
         invoiceBtn.removeAttribute('checked');
         //cardBtn.setAttribute('checked', '');
-    };
+};
 };
 
 printProducts();
@@ -463,6 +459,8 @@ function switchPaymentMethod(e) {
 };
 
 
+
+
 // Validate personal id number and activate order button.
 /*personalId.addEventListener('change', activateOrderButton);
 
@@ -480,8 +478,8 @@ function activateOrderButton() {
 
 
 
-function activateOrderBtn() { // Funkar, men var/hur anropa?
-    const firstName = document.querySelector('#firstName').value;
+function activateOrderBtn() { // Kan inte läsa firstName.length utan .value --> FUNKAR INTE
+    const firstName = document.querySelector('#firstName').addEventListener('blur', activateOrderBtn);
     const firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');
 
     if (firstName.length === 0) {
