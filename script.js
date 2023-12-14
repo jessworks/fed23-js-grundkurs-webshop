@@ -41,8 +41,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/diliara-garifullina-ftrv8LiVZso-unsplash.jpg',
+                alt: 'A slice of cherry pie on a white- and blue-coloured plate.',
             },
         ],
         name: 'Cherry Pie',
@@ -54,8 +54,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/diliara-garifullina-D7X-GMeTV7U-unsplash.jpg',
+                alt: 'A slice of apple pie on a white- and teal-coloured plate',
             },
         ],
         name: 'Apple Pie',
@@ -67,8 +67,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/florian-zeh-OgGVvVKfWPk-unsplash.jpg',
+                alt: 'A cup filled with coffee and milk against a wood grain backdrop.',
             },
         ],
         name: 'Flat White',
@@ -81,7 +81,7 @@ const products = [
         image: [
             {
                 src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                alt: 'A white cup filled with black coffee against a light umber backdrop.',
             },
         ],
         name: 'Coffee, Black',
@@ -93,8 +93,8 @@ const products = [
     {
         image: [
         {
-            src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-            alt: 'placeholder',
+            src: 'images/birgith-roosipuu-eCmSe8-KHOw-unsplash.jpg',
+            alt: 'A half-eaten donut with cherry pink glaze and sprinkles',
         },
     ],
         name: 'Cherry Glazed Donut',
@@ -106,8 +106,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/kenny-kennethh-Yc5sL-ejk6U-unsplash (1).jpg',
+                alt: 'A chocolate glazed donut with rainbow sprinkles.',
             },
         ],
         name: 'Chocolate Glazed Donut',
@@ -119,8 +119,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/lore-schodts-A7PwjrNLf1U-unsplash.jpg',
+                alt: 'A donut with white glaze and caramel stripes.',
             },
         ],
         name: 'Caramel Drizzle Donut',
@@ -132,8 +132,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/food-photographer-jennifer-pallian-OfdDiqx8Cz8-unsplash.jpg',
+                alt: 'A smashed choocolate chip cookie with melted chocolate coming out of it.',
             },
         ],
         name: 'Choc Chip Cookie',
@@ -145,8 +145,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/eaters-collective-uhJfaJ6c9fY-unsplash.jpg',
+                alt: 'A rye bread sandwich filled with ham, cheese, and salad.',
             },
         ],
         name: 'Ham on Rye',
@@ -158,8 +158,8 @@ const products = [
     {
         image: [
             {
-                src: 'images/nathan-dumlao-nBJHO6wmRWw-unsplash.jpg',
-                alt: 'placeholder',
+                src: 'images/pixzolo-photography-BiWb1Y8wpZk-unsplash.jpg',
+                alt: 'Grilled cheese triangles on a white plate laying on a messy table.',
             },
         ],
         name: 'Grilled Cheese',
