@@ -25,6 +25,8 @@ let slownessTimeout = setTimeout(emptyCartTooSlow, 1000 * 60 * 15);
 
 // Validate for invoice, activate order button.
 const cardInvoiceRadios = Array.from(document.querySelectorAll('input[name="paymentOption"]'));
+const invoiceRadio = document.querySelector('#invoiceRadio');
+const cardRadio = document.querySelector('#cardRadio');
 const invoiceOption = document.querySelector('#invoice');
 const cardOption = document.querySelector('#card');
 let selectedPaymentOption = 'invoice';
@@ -203,7 +205,7 @@ function printProducts() {
         productsContainerHtml.innerHTML += 
         `
             <li>
-                <img src="${product.image[0].src}">
+                <img src="${product.image[0].src}" loading="lazy" height="300" width="300">
                 <h2>${product.name}</h2>
                 <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
                 <div>Rating: <span>${product.rating}</span></div>
@@ -441,11 +443,23 @@ cardInvoiceRadios.forEach(radioBtn => {
     radioBtn.addEventListener('change', switchPaymentMethod);
 });
 
-function switchPaymentMethod(e) {
-    invoiceOption.classList.toggle('hidden');
-    cardOption.classList.toggle('hidden');
 
-    selectedPaymentOption = e.target.value; 
+function switchPaymentMethod(e) {
+    if (invoiceRadio.checked) {
+        invoiceOption.removeAttribute('hidden');
+        cardOption.setAttribute('hidden', '');
+    };
+
+    if (cardRadio.checked) {
+        cardOption.removeAttribute('hidden');
+        invoiceOption.setAttribute('hidden', '');
+    };
+    
+
+    /*invoiceOption.classList.toggle('hidden');
+    cardOption.classList.toggle('hidden');*/
+
+    selectedPaymentOption = e.target.value;
 };
 
 
