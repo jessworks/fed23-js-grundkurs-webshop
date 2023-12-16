@@ -1,3 +1,4 @@
+// Containers for product listing and cart
 const productsContainerHtml = document.querySelector('#productsContainer');
 const cartContainerHtml = document.querySelector('#cartContainer');
 const today = new Date(); //lyft in i funktionerna --> Jenni: vanliga fel
@@ -17,7 +18,7 @@ const isSunday = today.getDay() === 0;
 const isMonday = today.getDay() === 1;
 const currentHour = today.getHours();
 const invoiceBtn = document.querySelector('#invoiceBtn');
-const cardBtn = document.querySelector('#cardBtn');
+const cardBtn = document.querySelector('#cardRadio');
 
 // Empty cart
 const emptyCartBtn = document.querySelector('#emptyCart');
@@ -35,6 +36,7 @@ const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
 
 const orderBtn = document.querySelector('#orderBtn');
+//const invoice = document.querySelector('#invoice'); --> ? selectedPaymentOption
 
 
 const products = [
@@ -210,16 +212,16 @@ function printProducts() {
                 <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
                 <div>Rating: <span>${product.rating}</span></div>
                 <div>Category: <span>${product.category}</span></div>
-                <button class="decreaseBtn" data-id="${index}">-</button>
-                <button class="increaseBtn" data-id="${index}">+</button>
+                <button data-id="${index}" class="decreaseBtn">-</button>
+                <button data-id="${index}" class="increaseBtn">+</button>
                 <div class="amount">Amount: <span>${product.amount}</span></div>
             </li>
         `;
     });
     
 
-    const btnDecrease = document.querySelectorAll('button.decrease');
-    const btnIncrease = document.querySelectorAll('button.increase');
+    const btnDecrease = document.querySelectorAll('button.decreaseBtn');
+    const btnIncrease = document.querySelectorAll('button.increaseBtn');
 
     btnDecrease.forEach(btn => {
         btn.addEventListener('click', decreaseAmount);
@@ -228,8 +230,7 @@ function printProducts() {
     btnIncrease.forEach(btn => {
         btn.addEventListener('click', increaseAmount);
     });
-
-
+    
     printProductsCart();
 };
 
@@ -297,7 +298,7 @@ function printProductsCart() {
         invoiceBtn.setAttribute('hidden', '');
         invoiceBtn.removeAttribute('checked');
         //cardBtn.setAttribute('checked', '');
-};
+    };
 };
 
 printProducts();
@@ -409,7 +410,7 @@ function sortByRatingDesc(e) {
 // Reset cart
 emptyCartBtn.addEventListener('click', emptyCart);
 
-function emptyCart() { // Tar bort cart, men products.amount återställs inte.
+function emptyCart() {
     cartContainerHtml.innerHTML = '';
 
     for (let i = 0; i < products.length; i++) {
@@ -494,5 +495,6 @@ function activateOrderBtn() { // Kan inte läsa firstName.length utan .value -->
 };
 
 activateOrderBtn();
+
 
 // Order confirmation
