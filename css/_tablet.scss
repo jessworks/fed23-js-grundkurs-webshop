@@ -1,3 +1,57 @@
-h1 {
-    font-size: 8rem;
+/*
+___________________________
+__________HEADER___________
+___________________________
+*/
+
+header {
+    h1 {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 3rem;
+        color:aqua;
+    }
+    .toCart {
+        margin-top: 10px;
+    }
+};
+
+/*
+___________________________
+____PRODUCTS LISTING_______
+___________________________
+*/
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    .productsImgs {
+        grid-column: 1 /span 2;
+        margin-bottom: 44px;
+    }
+            
+    .productsDetails {
+        grid-column: 4 /span 3;
+
+        .addToCart {
+            grid-template-columns: repeat(6, 1fr);
+
+            .addToCartBtns {
+                grid-column: 1 /span 3;
+            }
+            .amount {
+                grid-column: 4 /span 2;
+            }
+        }
+    }
+    
+};
+
+
+    
+    
+.cartContainer {
+    margin-left: 40px;
 }
+      

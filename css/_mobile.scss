@@ -1,6 +1,8 @@
-/*______________________
+/*
+________________________
 _________HEADER_________
-______________________*/
+________________________
+*/
 
 header {
     position: fixed;
@@ -46,22 +48,32 @@ ___________________________
     .productsSort {
         margin-top: 80px;
         margin-bottom: 40px;
-        margin-left: 35px;
+        margin-left: 40px;
     }
 
     .products {
         list-style: none;
 
-            .productName {
-                margin-top: 10px;
-                margin-bottom: 10px;
+        .productImgs {
+            display: inline;
+            object-fit: cover;
+        }
+
+        .productName {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .addToCart {
+            margin-top: 16px;
+
+            .decreaseBtn, .increaseBtn {
+            border-radius: 20%;
             }
             .amount {
                 margin-bottom: 40px;
             }
-            .decreaseBtn, .increaseBtn {
-                border-radius: 20%;
-            }
+        }
+            
     }
 };
 
@@ -72,18 +84,17 @@ ___CART & CUSTOMER INFO____
 ___________________________
 */
 
-#cart {
-    #customerInfo {
+.cart {
+    .emptyCart {
+        margin-left: 35px;
+        margin-bottom: 32px;
+    }
+    .customerInfo {
         display: grid;
         justify-content: start;
     }
     .hidden {
         display: none;
-    }
-    
-    .emptyCart {
-        margin-left: 35px;
-        margin-bottom: 32px;
     }
 
     .orderForm {

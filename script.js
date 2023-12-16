@@ -207,14 +207,20 @@ function printProducts() {
         productsContainerHtml.innerHTML += 
         `
             <li class="products">
-                <img src="${product.image[0].src}" alt="${product.image[0].alt}" loading="lazy" height="300" width="300">
-                <h2 class="productName">${product.name}</h2>
-                <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
-                <div>Rating: <span>${product.rating}</span></div>
-                <div>Category: <span>${product.category}</span></div>
-                <button data-id="${index}" class="decreaseBtn">-</button>
-                <button data-id="${index}" class="increaseBtn">+</button>
-                <div class="amount">Amount: <span>${product.amount}</span></div>
+                <img src="${product.image[0].src}" alt="${product.image[0].alt}" class="productsImgs" loading="lazy" height="400" width="400">
+                <div class="productsDetails">
+                    <h2 class="productName">${product.name}</h2>
+                    <div>Price: <span>${Math.round(product.price * priceIncrease)}</span> kr</div>
+                    <div>Rating: <span>${product.rating}</span></div>
+                    <div>Category: <span>${product.category}</span></div>
+                    <div class="addToCart">
+                        <div class="addToCartBtns">
+                            <button data-id="${index}" class="decreaseBtn">-</button>
+                            <button data-id="${index}" class="increaseBtn">+</button>
+                        </div>
+                        <div class="amount">Amount: <span>${product.amount}</span></div>
+                    </div>
+                </div>
             </li>
         `;
     });

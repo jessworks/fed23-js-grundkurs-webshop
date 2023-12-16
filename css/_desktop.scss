@@ -1,0 +1,36 @@
+/*______________________
+_________HEADER_________
+______________________*/
+
+header {
+    h1 {
+        font-size: 4rem;
+        color:chocolate;
+    }
+};
+
+/*
+___________________________
+____PRODUCTS LISTING_______
+___________________________
+*/
+
+main {
+    .productsSort {
+        margin-top: 150px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    
+        .productsImgs {
+            grid-column: 1 /span 5;
+            margin-bottom: 44px;
+        }
+                
+        .productsDetails {
+            grid-column: 7 /span 4;
+        }
+    }
+};
