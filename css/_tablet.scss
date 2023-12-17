@@ -9,7 +9,6 @@ header {
         margin-top: 15px;
         margin-bottom: 15px;
         font-size: 3rem;
-        color:aqua;
     }
     .toCart {
         margin-top: 10px;
@@ -48,10 +47,16 @@ ___________________________
     
 };
 
+/*
+___________________________
+___CART & CUSTOMER INFO____
+___________________________
+*/
+    
+ .cart {
+    .cartContainer {
+        margin-left: 40px;
+    }
+}; 
 
-    
-    
-.cartContainer {
-    margin-left: 40px;
-}
       

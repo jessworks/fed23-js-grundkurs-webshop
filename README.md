@@ -1,7 +1,8 @@
 # Webshop
 
-link to live page
-A simple one-page webshop as a first project in JavaScript. Part of course work at Medieinstitutet
+https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-jessworks/
+
+A simple one-page webshop as a first project in JavaScript. Part of course work on Medieinstitutet's front-end developer program.
 
 Contents:
 - Product listing based on array.

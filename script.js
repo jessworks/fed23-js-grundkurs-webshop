@@ -271,7 +271,6 @@ function printProductsCart() {
                     <span>${product.name}</span>
                     <div>Amount: <span>${product.amount}</span></div>
                     <div>Total: <span>${Math.round(product.amount * adjustedProductsPrice)}</span> kr</div>
-                    
                 </article>
             `;
         };
@@ -287,15 +286,18 @@ function printProductsCart() {
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
+    
+    cartContainerHtml.innerHTML += `<p>Sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div><label for="dicountCode">Enter discount code <input type="text" id="discountCode">`
-    cartContainerHtml.innerHTML += `<p>Total sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
     //15+ products, free delivery
     if (productsAmountOrdered > 15) {
         cartContainerHtml.innerHTML += '<p>Shipping: 0 kr</p>';
+        cartContainerHtml.innerHTML += `<p>Sum Total: ${Math.round(sum)} kr</p>`;
     } else {
-        cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))}`
+        cartContainerHtml.innerHTML += `<p>Shipping: ${Math.round(25 + (0.1 * sum))} kr</p>`;
+        cartContainerHtml.innerHTML += `<p>Sum Total: ${Math.round(sum + 25 + (0.1 * sum))} kr</p>`;
     };
 
     //* Cart over 800 kr, invoice invalid option. --> FUNKAR INTE
@@ -504,3 +506,11 @@ activateOrderBtn();
 
 
 // Order confirmation
+
+const orderConfirmationHtml = document.querySelector('#orderConfirmationContainer');
+
+function orderConfirmation() {
+    orderConfirmationHtml.innerHTML = '';
+    
+
+}
