@@ -36,7 +36,7 @@ const personalId = document.querySelector('#personalId');
 const personalIdRegEx = new RegExp(/^(\d{10}|\d{12}|\d{6}-\d{4}|\d{8}-\d{4}|\d{8} \d{4}|\d{6} \d{4})/);
 
 const orderBtn = document.querySelector('#orderBtn');
-//const invoice = document.querySelector('#invoice'); --> ? selectedPaymentOption
+const invoice = document.querySelector('#invoice');
 
 
 const products = [
@@ -286,9 +286,8 @@ function printProductsCart() {
         msg += `<p>Happy Monday! You get 10 % off your order.</p>`;
     };
 
-    
-    cartContainerHtml.innerHTML += `<p>Sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div><label for="dicountCode">Enter discount code <input type="text" id="discountCode">`
+    cartContainerHtml.innerHTML += `<p>Sum: ${Math.round(sum)} kr</p>`;
     cartContainerHtml.innerHTML += `<div>${msg}</div>`;
 
     //15+ products, free delivery
@@ -459,10 +458,11 @@ function switchPaymentMethod(e) {
         cardOption.removeAttribute('hidden');
         invoiceOption.setAttribute('hidden', '');
     };
-    
 
-    /*invoiceOption.classList.toggle('hidden');
-    cardOption.classList.toggle('hidden');*/
+    /*
+    invoiceOption.classList.toggle('hidden');
+    cardOption.classList.toggle('hidden');
+    */
 
     selectedPaymentOption = e.target.value;
 };
@@ -470,8 +470,9 @@ function switchPaymentMethod(e) {
 
 
 
+
 // Validate personal id number and activate order button.
-/*personalId.addEventListener('change', activateOrderButton);
+personalId.addEventListener('change', activateOrderButton);
 
 function isPersonalIdNumberValid() {
     return personalIdRegEx.exec(personalId.value);
@@ -483,16 +484,18 @@ function activateOrderButton() {
     } else if(selectedPaymentOption === 'invoice' && !isPersonalIdNumberValid()) {
         orderBtn.setAttribute('disabled', '');
     }
-};*/
+};
 
 
 
-function activateOrderBtn() { // Kan inte läsa firstName.length utan .value --> FUNKAR INTE
-    const firstName = document.querySelector('#firstName').addEventListener('blur', activateOrderBtn);
+const firstName = document.querySelector('#firstName')
+firstName.addEventListener('blur', activateOrderBtn);
+
+function activateOrderBtn() {
     const firstNameErrorMsg = document.querySelector('#firstNameErrorMsg');
 
     if (firstName.length === 0) {
-        firstNameErrorMsg.innerHTML = 'Fill out this field.';
+        firstNameErrorMsg.innerHTML += `<p>Add your first name.</p>`;
         orderBtn.setAttribute('disabled', '');
         return false;
     } else {
@@ -505,12 +508,41 @@ function activateOrderBtn() { // Kan inte läsa firstName.length utan .value -->
 activateOrderBtn();
 
 
-// Order confirmation
 
+// Order confirmation --> det händer absolut igenting
 const orderConfirmationHtml = document.querySelector('#orderConfirmationContainer');
 
-function orderConfirmation() {
+orderBtn.addEventListener('click', printOrderConfirmation);
+
+function printOrderConfirmation() {
     orderConfirmationHtml.innerHTML = '';
     
+    products.forEach(product => {
+        orderConfirmationHtml.innerHTML += 
+        `
+            <article>
+                <h2>Order Confirmation</h2>
+                <span>${products.name}</span>
+                <div>Amount: <span>${products.amount}</span></div>
+                <div>Total: <span>${Math.round(products.amount * adjustedProductsPrice)}</span> kr</div>
+                <p>Thank you for your order! It will be delivered ...</p>
+            </article>
+        `;
+    });   
+};
 
-}
+/*
+const orderConfirmationHtml = document.querySelector('#orderConfirmationContainer');
+
+orderBtn.addEventListener('click', testPrint);
+
+
+function testPrint(e) {
+    orderConfirmationHtml.innerHTML =
+    `
+        <p>test</p>
+    `
+};
+
+testPrint();
+*/
