@@ -18,17 +18,13 @@ Contents:
 
 - [@jessworks]https://github.com/jessworks
 
-## Appendix
-
-Any additional information goes here
-
 ## Tech Stack
 
 - HTML
 - Sass
 - JavaScript
 
-## Screenshots
+<!--- ## Screenshots
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
@@ -42,4 +38,4 @@ Validation HTML
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 Validation CSS
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) --->
