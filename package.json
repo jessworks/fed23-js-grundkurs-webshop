@@ -1,0 +1,14 @@
+{
+  "name": "fed23-js-grundkurs-webshop",
+  "version": "1.0.0",
+  "description": "https://medieinstitutet.github.io/fed23d-js-grundkurs-webshop-jessworks/",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
